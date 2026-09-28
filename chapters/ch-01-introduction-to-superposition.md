@@ -42,10 +42,10 @@ Quantum superposition is a phenomenon associated with quantum systems. Quantum s
 ```{figure} ../images/ch-01/490703_1_En_1_Fig3_HTML.png
 :label: fig-1-3
 
-:alt: Quantum effects associated with energy quantization are important at the atomic and subatomic distances. In this figure, the grey lines represent allowed energies. In quantum systems, the energies...
+:alt: Quantum effects associated with energy quantization are important at the atomic and subatomic distances. In this figure, the gray lines represent allowed energies. In quantum systems, the energies...
 
 
-Quantum effects associated with energy quantization are important at the atomic and subatomic distances. In this figure, the grey lines represent allowed energies. In quantum systems, the energies are quantized. As we zoom out of the quantum system to see it through a classical lens (represented by the downward arrow), the energies become more dense and appear continuous. This is the reason quantization is not noticeable in everyday objects
+Quantum effects associated with energy quantization are important at the atomic and subatomic distances. In this figure, the gray lines represent allowed energies. In quantum systems, the energies are quantized. As we zoom out of the quantum system to see it through a classical lens (represented by the downward arrow), the energies become more dense and appear continuous. This is the reason quantization is not noticeable in everyday objects
 ```
 
 
