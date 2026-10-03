@@ -176,6 +176,23 @@ def figure_targets(path: Path, text: str) -> list[tuple[Path, bool]]:
     return found
 
 
+def print_markup_problems(path: Path, text: str) -> list[str]:
+    """Catch source markup that silently renders as bad print captions or links."""
+    problems: list[str] = []
+    for match in FIGURE_FENCE_RE.finditer(text):
+        body = match.group(3)
+        options = re.split(r"\n[ \t]*\n", body, maxsplit=1)[0]
+        if re.search(r"(?m)^[ \t]*:alt:", body) and not re.search(
+            r"(?m)^[ \t]*:alt:", options
+        ):
+            line = text.count("\n", 0, match.start()) + 1
+            problems.append(f"{path.relative_to(ROOT)}:{line}: figure alt is outside the option block")
+    for match in re.finditer(r"(?m)^[ \t]*\(tbl-[^)]+\)=\n[ \t]*\*\*Table", text):
+        line = text.count("\n", 0, match.start()) + 1
+        problems.append(f"{path.relative_to(ROOT)}:{line}: table label targets a paragraph")
+    return problems
+
+
 def fence_balance_warnings(path: Path, text: str) -> list[str]:
     """Stack-based fence check; nested ```` / ``` mismatches become warnings."""
     warnings: list[str] = []
@@ -297,6 +314,15 @@ def main() -> int:
         report.warn(f"{missing_alt}/{figures} figure/image directives lack explicit alt text")
     else:
         report.ok(f"all {figures} figure/image directives include alt text")
+
+    print_problems = [
+        problem for path, source in texts.items() for problem in print_markup_problems(path, source)
+    ]
+    report.check(
+        not print_problems,
+        "figure options and table labels render as structured print content",
+        "; ".join(print_problems[:8]),
+    )
 
     images_root = ROOT / "images"
     if images_root.is_dir():

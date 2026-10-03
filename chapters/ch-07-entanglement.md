@@ -5,36 +5,34 @@ label: ch-7
 doi: 10.1007/978-3-030-61601-4_7
 ---
 
-So far, we have discussed the manipulation and measurement of a single qubit. However, **quantum entanglement** is a physical phenomenon that occurs when multiple qubits are correlated with each other. Entanglement can have strange and useful consequences that could make quantum computers faster than classical computers. Qubits can be “entangled,” providing hidden quantum information that does not exist in the classical world. It is this entanglement that is one of the main advantages of the quantum world!
+So far, we have discussed the manipulation and measurement of a single qubit. **Quantum entanglement** can arise when two or more qubits share a state that cannot be written as a product of their individual states. Entangled qubits can show correlations that no local classical model can reproduce. Quantum algorithms can use these correlations together with interference, although entanglement alone does not guarantee a speedup.
 
 (sec-7-1)=
 ## 7.1 Entanglement Fundamentals
 
-To provide one example of the strange behavior of entanglement, suppose we have two fair coins. Classically, if you flipped two fair coins many times, you would measure the outcomes HH, HT, TH, or TT, each occurring with a 25% probability. However, by quantum entangling these two fair coins, it is possible to create a state $(1/\sqrt {2})(\lvert HH\rangle + \lvert TT\rangle )$ as illustrated in Fig. [](#fig-7-1). Many other types of entangled states are possible, but this is one famous example called a Bell state. If you flipped this “entangled” pair of coins, they are entangled in such a way that only two measurement outcomes are possible: (1) both coins land on heads; or (2) both coins land on tails, with each outcome occurring with 50% probability. You would never see HT or TH!
+To introduce the notation, imagine two qubits whose measurement outcomes are labeled heads (H) and tails (T). Ordinary, independent fair coins yield HH, HT, TH, and TT, each with 25% probability. The qubits could instead be prepared in the Bell state $(1/\sqrt {2})(\lvert HH\rangle + \lvert TT\rangle )$, illustrated in Fig. [](#fig-7-1). Measuring both qubits in the H/T basis then yields HH or TT with 50% probability each; HT and TH never occur. Classical coins can also have correlated outcomes, so this one set of outcomes alone does not establish entanglement. The difference appears when the quantum state is tested in other measurement bases.
 
 ```{figure} ../images/ch-07/490703_1_En_7_Fig1_HTML.png
 :label: fig-7-1
+:alt: Two coin-shaped qubit symbols with matching H/H and T/T outcomes, representing measurements of a Bell state
 
-:alt: Two coins that are entangled in such a way that they either both land on HH or both land on TT
 
-
-Two coins that are entangled in such a way that they either both land on HH or both land on TT.
+Coin symbols represent two qubits measured in the H/T basis: a Bell state yields either HH or TT.
 ```
 
 
-Furthermore, if the two entangled coins are separated by thousands of miles, one coin can be flipped and measured. In this case, if the measured coin produced the outcome heads, then we automatically know that the other coin must also land on heads. If the measured coin produced the outcome tails, then we automatically know that the other coin must also land on tails! If this isn’t strange enough, this appears to suggest that the two coins can transmit information instantaneously, and possibly even faster than the speed of light (the fastest speed in the Universe), as shown in Fig. [](#fig-7-2). If the two coins are flipped at the exact same time, somehow each coin knows to land on the same side as the other even though there can be no classical communication between them.
+The qubits can be separated before measurement. If Alice measures H, she can predict that Bob will obtain H when he measures in the same basis; likewise for T. Yet Bob's local results remain random, regardless of whether or when Alice measures her qubit. They must compare their results through an ordinary communication channel to observe the correlation (Fig. [](#fig-7-2)).
 
 ```{figure} ../images/ch-07/490703_1_En_7_Fig2_HTML.png
 :label: fig-7-2
+:alt: Alice and Bob each hold one distant qubit; matching H/H or T/T outcomes become apparent when they compare results
 
-:alt: Separated entangled coins produce correlated outcomes despite no communication between them
 
-
-Two coins are separated with no means of communication between each other. Classically, the flip of the second coin would be unrelated to the first flip. However, entangled coins would still produce correlated results.
+Two distant qubits prepared in a Bell state yield matching results when measured in the same basis. Comparing those results requires classical communication.
 ```
 
 
-How does the other coin instantaneously “know” what was measured on the other? Is information somehow being transmitted faster than the speed of light? Einstein called this behavior a “spooky action at a distance.”[^1] It has since been shown that no information is being transmitted from one place to the other, and so no information is being transmitted faster than the speed of light. Rather, the particles share non-classical information at the time of entanglement, which is then observed in the measurement process. The correlation between entangled qubits is the key that allows quantum computers to perform certain computations much faster than classical computers.
+Einstein called the apparent connection “spooky action at a distance.”[^1] Entanglement does not let Alice control Bob's result or send him a message faster than light. Its distinctive feature is the pattern of correlations across different measurement choices, examined below through Bell's theorem.
 
 (sec-7-2)=
 ## 7.2 Hidden Variable Theory
@@ -43,7 +41,6 @@ It is tempting to think that there may be some classical explanation for entangl
 
 ```{figure} ../images/ch-07/490703_1_En_7_Fig3_HTML.png
 :label: fig-7-3
-
 :alt: When a particle decays into two smaller particles, the decay products are “classically entangled” according to the conservation of momentum
 
 
@@ -51,7 +48,7 @@ When a particle decays into two smaller particles, the decay products are “cla
 ```
 
 
-However, Bell’s theorem[^2] demonstrated that the correlation between entangled quantum particles is more than what is possible classically, disproving the idea of a hidden variable. All other potential loopholes have been resolved as of 2016.[^3] As such, entanglement is a purely quantum phenomenon with no classical explanation.
+Bell's theorem shows that certain quantum correlations violate bounds obeyed by *local hidden-variable* models.[^2] Experiments have observed these violations under increasingly stringent conditions.[^3] Bell's theorem does not rule out every possible hidden-variable theory; it rules out the local models subject to its assumptions.
 
 (sec-7-3)=
 ## 7.3 Multi-Qubit States
@@ -63,15 +60,14 @@ Given multiple qubits, the total state of the system can be written together in 
 \lvert\psi\rangle = \alpha_{00}\lvert00\rangle + \alpha_{01}\lvert01\rangle + \alpha_{10}\lvert10\rangle + \alpha_{11}\lvert11\rangle.
 ```
 
-As we saw for the single qubit states, the coefficients $\alpha_{ij}$ are called the amplitudes and are generally complex numbers. Measuring the two qubits will collapse the system into one of the four basis states with probability given by $\alpha _{ij}^2$. This is shown in Fig. [](#fig-7-4).
+As we saw for single-qubit states, the coefficients $\alpha_{ij}$ are amplitudes and are generally complex numbers. Measuring both qubits in this basis yields state $\lvert ij\rangle$ with probability $|\alpha_{ij}|^2$. This is shown in Fig. [](#fig-7-4).
 
 ```{figure} ../images/ch-07/490703_1_En_7_Fig4_HTML.png
 :label: fig-7-4
+:alt: Four possible two-qubit outcomes 00, 01, 10, and 11; the diagram labels their probabilities α², a shorthand valid only for real amplitudes
 
-:alt: A two-qubit system collapses into one of four basis states with probability given by the squared amplitudes
 
-
-A two-qubit system can collapse into one of four states with probability $\alpha _{ij}^2$.
+A two-qubit measurement yields one of four basis states, with probability $|\alpha_{ij}|^2$ for state $\lvert ij\rangle$. The diagram's $\alpha_{ij}^2$ labels apply only when the amplitudes are real.
 ```
 
 
@@ -110,13 +106,13 @@ One qubit is in an $\alpha_0|0\rangle + \alpha_1|1\rangle$ state, while another 
 (sec-7-5)=
 ## 7.5 Entangled Systems
 
-Intuitively, any interaction between two or more qubits will cause the qubits to share some information between each other. This sharing of information from interactions causes emergent phenomena that we call entanglement. Mathematically, a multi-qubit state is entangled only if it cannot be expressed as a product state. However, determining if a general multi-qubit state can be expressed as a product state can be difficult. Instead, an easier test to determine if a system is entangled or not is to check if measuring the value of one qubit changes the probability distribution of the second qubit. We will use this test extensively.[^5] If this test is true, then the system is definitely entangled. However, if the probability distribution of the second qubit does not change in this test, then the system could still be entangled. In this case, the entanglement arises from the sharing of hidden information in the signs (or complex components) of the probability amplitudes of a general state. While the probabilities may not change (due to the amplitudes being squared), the relative signs have important consequences for constructive or destructive interference if more gates are applied to qubits. This concept will be explored in question 5 e).
+An interaction *can* entangle qubits, but it need not do so. For the pure states used in this chapter, a multi-qubit state is entangled when it cannot be factored into single-qubit states. One useful test for these pure states is to ask whether measuring one qubit changes the conditional probability distribution for the other. If it does, the state is entangled. If it does not in the chosen basis, the state could still be entangled: relative phases may reveal correlations in another basis. For mixed states, correlations alone do not prove entanglement.[^5] Question 5(e) explores the role of relative signs.
 
 ### 7.5.1 Example
 
 Is $\lvert \psi \rangle =\frac {1}{\sqrt {2}}\lvert 00\rangle +\frac {1}{\sqrt {2}}\lvert 11\rangle$ an entangled state?
 
-Yes! To see this, examine qubit #2. The probabilities for measuring qubit #2 in the |0〉 or |1〉 states are originally 50/50 respectively. However, if we measured qubit #1, then we know what the outcome of measuring qubit #2 will be with 100% certainty. The same argument holds if qubit #2 is measured first. As such, measuring one of the qubits affects the probability of measuring the other qubit in a certain state, and so they are entangled. Mathematically, an entangled state is a special multi-qubit superposition state that cannot be factored into a product of the individual qubits.
+Yes. Before learning the first result, either outcome for qubit #2 has probability 50%. Once we know the result for qubit #1, we can predict qubit #2's result in the same basis with certainty. This is evidence of entanglement for the specified pure state; the mathematical test below confirms that the state cannot be factored into individual qubits. Bob still sees a 50/50 distribution until he learns Alice's result.
 
 ### 7.5.2 Example
 
@@ -153,7 +149,6 @@ As there are many different ways of building a quantum computer, there are many 
 
 ```{figure} ../images/ch-07/490703_1_En_7_Fig5_HTML.png
 :label: fig-7-5
-
 :alt: A nonlinear crystal creates two photons with entangled polarizations
 
 
@@ -164,15 +159,16 @@ A nonlinear crystal creates two photons with entangled polarizations.
 (sec-7-7)=
 ## 7.7 CNOT Gate
 
-You have already learned about the *X*, Hadamard, and *Z* gates. These act on a single qubit. There are also quantum gates that perform a logic operation on multiple qubits. The most important multi-qubit gate is the controlled NOT (CNOT) gate. The CNOT is used to entangle two qubits together and is essential in quantum computing/algorithms. The CNOT takes in two qubits, a control qubit and a target qubit, and outputs two qubits. The control qubit stays the same, while the target obeys the following rule.
+You have already learned about the *X*, Hadamard, and *Z* gates. These act on a single qubit. There are also quantum gates that perform a logic operation on multiple qubits. One widely used two-qubit gate is the controlled NOT (CNOT) gate. CNOT can entangle suitable input states. It takes a control qubit and a target qubit as inputs and outputs two qubits. The control qubit stays the same, while the target obeys the following rule.
 
 - If the control qubit is |0〉, then leave the target qubit alone.
-- If the control qubit is |1〉, then on the target qubit flip |0〉→|1〉 and |1〉→|0〉.
+- If the control qubit is |1〉, flip the target from $|0\rangle$ to $|1\rangle$, or from $|1\rangle$ to $|0\rangle$.
 
-The truth table for the CNOT gate is shown in Table [](#tbl-7-1).[^6] From this one can deduce the matrix form of the CNOT gate as
+The truth table for the CNOT gate is shown in [](#tbl-7-1).[^6] From this one can deduce the matrix form of the CNOT gate as
 
-(tbl-7-1)=
-**Table 7.1** The truth table for the CNOT gate
+:::{table} The truth table for the CNOT gate
+:label: tbl-7-1
+:enumerator: 7.1
 
 | Before |        | After |        |
 |--------|--------|-------|--------|
@@ -181,6 +177,7 @@ The truth table for the CNOT gate is shown in Table [](#tbl-7-1).[^6] From this 
 | \|0〉 | \|1〉 | \|0〉 | \|1〉 |
 | \|1〉 | \|0〉 | \|1〉 | \|1〉 |
 | \|1〉 | \|1〉 | \|1〉 | \|0〉 |
+:::
 
 ```{math}
 :label: eq-7-4
@@ -188,11 +185,10 @@ The truth table for the CNOT gate is shown in Table [](#tbl-7-1).[^6] From this 
 \text{CNOT} = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \\ \end{pmatrix}.
 ```
 
-Figure [](#fig-7-6) is the circuit for the CNOT gate. Plugging in the “Before” values from Table [](#tbl-7-1) into this circuit will produce the “After” values.
+Figure [](#fig-7-6) is the circuit for the CNOT gate. Plugging in the “Before” values from [](#tbl-7-1) into this circuit will produce the “After” values.
 
 ```{figure} ../images/ch-07/490703_1_En_7_Fig6_HTML.png
 :label: fig-7-6
-
 :alt: The CNOT gate applies an X gate to the target qubit when the control qubit is 1
 
 
@@ -207,7 +203,6 @@ When converting between bra-ket notation and circuit notation, there are two dif
 
 ```{figure} ../images/ch-07/490703_1_En_7_Fig7_HTML.png
 :label: fig-7-7
-
 :alt: The two conventions for mapping circuit notation to the bra-ket notation, IBM (left) and Other (right). Note in this book we adopt the IBM convention as we run code on the IBM quantum computers
 
 
@@ -224,8 +219,7 @@ The other convention, which we will **not** use going forward but provide in cas
 
    ```{figure} ../images/ch-07/490703_1_En_7_Fig8_HTML.png
    :label: fig-7-8
-
-   :alt: The quantum circuit that sends a multi-qubit in the |01 state through a CNOT gate
+   :alt: Two-qubit circuit with input |01〉, upper control qubit and lower target qubit connected by a CNOT gate
 
 
    The quantum circuit that sends a multi-qubit in the |01〉 state through a CNOT gate.
@@ -238,7 +232,6 @@ The other convention, which we will **not** use going forward but provide in cas
 
    ```{figure} ../images/ch-07/490703_1_En_7_Fig9_HTML.png
    :label: fig-7-9
-
    :alt: The quantum circuit that sends a control qubit in a superposition state through a CNOT gate
 
 
@@ -250,22 +243,21 @@ The other convention, which we will **not** use going forward but provide in cas
 
    ```{figure} ../images/ch-07/490703_1_En_7_Fig10_HTML.png
    :label: fig-7-10
+   :alt: Histogram of five-bit register outcomes 00000 at 49.805% and 00011 at 50.195%; the other three register bits remain zero
 
-   :alt: The measurement histogram produced by running the circuit in Fig. [](#fig-7-9). Reprint courtesy of International Business Machines Corporation, ⒸInternational Business Machines Corporation
 
-
-   The measurement histogram produced by running the circuit in Fig. [](#fig-7-9). Reprint courtesy of International Business Machines Corporation, ⒸInternational Business Machines Corporation.
+   The measurement histogram produced by running the circuit in Fig. [](#fig-7-9). This older display includes three unused register bits, which remain zero. Reprint courtesy of International Business Machines Corporation, ⒸInternational Business Machines Corporation.
    ```
 
 
-   The two qubits are entangled after the CNOT! As illustrated in the previous example, this state cannot be written as the product of two separate qubits. As with the single-qubit gates, the CNOT gate operates on ALL states in the superposition, e.g., the CNOT gate acts on the four basis states of a two-qubit system simultaneously. Quantum algorithms leverage this parallelism to ensure speed improvements over classical computers. In addition, as with all quantum gates, the CNOT is reversible, meaning the operation can be undone (which can be used to figure out the original qubit states).
+   The two qubits are entangled after this CNOT: the resulting Bell state cannot be written as a product of two single-qubit states. By linearity, CNOT acts on each basis component of a superposition. That fact alone does not guarantee a computational speedup; a useful algorithm must arrange interference so that measurement reveals the desired answer. CNOT is reversible: applying it again restores the input state.
 
 (sec-7-10)=
 ## 7.10 Big Ideas
 
-1. Entanglement is the sharing of non-classical information between two or more quantum states. This is caused by quantum states or qubits interacting with each other.
-2. Entanglement is needed to make quantum computers perform calculations which classical computers cannot.
-3. Two-qubit gates act on two different qubits simultaneously and create entanglement. The controlled NOT (CNOT) gate is frequently used for this purpose.[^7]
+1. A pure state is entangled when it cannot be written as a product of its component states. Interactions can create entanglement.
+2. Entanglement and interference are resources in many quantum algorithms, but neither alone guarantees a speedup.
+3. Two-qubit gates act on pairs of qubits. CNOT can create entanglement from suitable inputs.[^7]
 
 (sec-7-11)=
 ## 7.11 Activities
@@ -293,7 +285,7 @@ For those interested in hands-on experiments, see QuTools[^8]
    - (d) What is the new state of the system after measuring the first qubit as 0?
    - (e) What is the new state of the system after measuring the first qubit as 1?
 
-2. Two fair coins are flipped. What is the state of the two-coin system while the coins are in the air?
+2. Two independent fair classical coins are flipped. What are the four possible outcomes, and what probability does each have? How does this distribution differ from the H/T measurement distribution of the Bell state in Section 7.1?
 3. Is $\frac {1}{\sqrt {2}}\lvert 00\rangle +\frac {1}{\sqrt {2}}\lvert 01\rangle$ an entangled state? If so, show that it cannot be written as a product. If not, what is the individual state of the two qubits?
 4. Are the following two-qubit states entangled?
    - (a) $\frac {1}{\sqrt {2}}|{01}\rangle +\frac {1}{\sqrt {2}}|{10}\rangle$
@@ -312,8 +304,7 @@ For those interested in hands-on experiments, see QuTools[^8]
 
    ```{figure} ../images/ch-07/490703_1_En_7_Fig11_HTML.png
    :label: fig-7-11
-
-   :alt: CNOT gate for Problem 6
+   :alt: Two-wire CNOT circuit with its output qubit values shown and its input values left for the reader to determine
 
 
    CNOT gate for Problem 6
@@ -334,17 +325,17 @@ For those interested in hands-on experiments, see QuTools[^8]
    - (a) ![Quantum circuit for Problem 9a](../images/ch-07/490703_1_En_7_Figi_HTML.gif)
    - (b) ![Quantum circuit for Problem 9b](../images/ch-07/490703_1_En_7_Figj_HTML.gif)
 10. Use the IBM Q[^9] simulator to create the entangled state $\frac {1}{\sqrt {2}}|{01}\rangle +\frac {1}{\sqrt {2}}|{10}\rangle$.
-11. Suppose Alice has one half of an entangled pair and Bob has the other half. When Alice makes a measurement on her qubit, Bob’s qubit instantaneously changes its state. Can Alice and Bob use entanglement to transmit information faster than the speed of light? Why or why not?
+11. Suppose Alice and Bob each hold one qubit of an entangled pair. Alice measures hers. What results can Bob observe locally, before hearing from Alice? Can they use the correlation to send a message faster than light? Explain.
 
 [^1]: “Bounding the speed of spooky action at a distance.” *Physical Review Letters*. 110: 260407. 2013. [arXiv:1303.0614](https://arxiv.org/abs/1303.0614).
 
-[^2]: [https://brilliant.org/wiki/bells-theorem/](https://brilliant.org/wiki/bells-theorem/).
+[^2]: [IBM Quantum Learning, Bell's inequality](https://quantum.cloud.ibm.com/learning/en/modules/quantum-mechanics/bells-inequality-with-qiskit).
 
-[^3]: The BIG Bell Test Collaboration (9 May 2018). “Challenging local realism with human choices.” *Nature*. 557: 212–216. [doi:10.1038/s41586-018-0085-3](https://doi.org/10.1038/s41586-018-0085-3).
+[^3]: The BIG Bell Test Collaboration (9 May 2018). “Challenging local realism with human choices.” *Nature* 557: 212–216. [Publisher page](https://www.nature.com/articles/s41586-018-0085-3).
 
 [^4]: More recently, it has been shown that there can exist quantum correlations in separable states that are not due to entanglement. These are called quantum discord: [https://en.wikipedia.org/wiki/Quantum_discord](https://en.wikipedia.org/wiki/Quantum_discord).
 
-[^5]: There are ways to test for entanglement without the need to factorize a multi-qubit state into single qubit states. One such way is to determine whether the trace of the square of the density matrix for the subsystem is equal to 1. However, the mathematical necessities for this test are outside the scope of this course.
+[^5]: The conditional-probability test here is used only for known pure states. For a pure two-qubit state, a reduced state's purity can provide a more general test, but density matrices are outside the scope of this chapter.
 
 [^6]: [https://en.wikipedia.org/wiki/Controlled_NOT_gate](https://en.wikipedia.org/wiki/Controlled_NOT_gate).
 

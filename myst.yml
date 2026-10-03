@@ -47,6 +47,32 @@ project:
     - file: chapters/ch-08-quantum-teleportation.md
     - file: chapters/ch-09-quantum-algorithms.md
     - file: chapters/ch-10-worksheets.md
+  exports:
+    - id: book-pdf
+      format: pdf
+      template: ./templates/book
+      output: exports/quantum-computing-for-the-quantum-curious.pdf
+      articles:
+        - file: chapters/ch-01-introduction-to-superposition.md
+          level: 0
+        - file: chapters/ch-02-what-is-a-qubit.md
+          level: 0
+        - file: chapters/ch-03-creating-superposition-the-beam-splitter.md
+          level: 0
+        - file: chapters/ch-04-creating-superposition-stern-gerlach.md
+          level: 0
+        - file: chapters/ch-05-quantum-cryptography.md
+          level: 0
+        - file: chapters/ch-06-quantum-gates.md
+          level: 0
+        - file: chapters/ch-07-entanglement.md
+          level: 0
+        - file: chapters/ch-08-quantum-teleportation.md
+          level: 0
+        - file: chapters/ch-09-quantum-algorithms.md
+          level: 0
+        - file: chapters/ch-10-worksheets.md
+          level: 0
 site:
   template: book-theme
   title: Quantum Computing for the Quantum Curious

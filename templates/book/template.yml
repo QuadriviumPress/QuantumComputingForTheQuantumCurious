@@ -1,0 +1,31 @@
+myst: v1
+kind: tex
+title: Quantum Computing for the Quantum Curious print edition
+description: Local XeLaTeX template for the edited MyST textbook.
+version: '1.0.0'
+license: CC-BY-4.0
+tags:
+  - book
+doc:
+  - id: title
+    required: true
+  - id: authors
+    required: true
+  - id: bibliography
+files:
+  - template.tex
+packages:
+  - amsmath
+  - amssymb
+  - booktabs
+  - caption
+  - enumitem
+  - fancyhdr
+  - fontspec
+  - geometry
+  - graphicx
+  - hyperref
+  - microtype
+  - natbib
+  - newunicodechar
+  - xcolor

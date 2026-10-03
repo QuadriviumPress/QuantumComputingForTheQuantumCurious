@@ -11,7 +11,6 @@ Quantum bits or **qubits** are similar to bits in that there are two measurable 
 
 ```{figure} ../images/ch-02/490703_1_En_2_Fig1_HTML.png
 :label: fig-2-1
-
 :alt: A classical bit can be either 0 or 1. A qubit can be in a superposition of both 0 and 1
 
 
@@ -36,7 +35,6 @@ with *α* and *β* called the amplitudes of the states (Fig. [](#fig-2-2)). Ampl
 
 ```{figure} ../images/ch-02/490703_1_En_2_Fig2_HTML.png
 :label: fig-2-2
-
 :alt: The state of Schrödinger’s cat expressed in bra-ket notation
 
 
@@ -44,7 +42,7 @@ The state of Schrödinger’s cat expressed in bra-ket notation
 ```
 
 
-**Amplitudes** are very important because they give us the probability of finding the particle in that specific state when performing a measurement. The probability of measuring the particle in state $\lvert 0 \rangle$ is $\lvert \alpha \rvert ^2$, and the probability of measuring the particle in state $\lvert 1 \rangle$ is $\lvert \beta \rvert ^2$. Why is it squared? The short answer is that it gives the correct experimental predictions for this choice of representation.[^1] Squaring *α* and *β* to find the probability is similar to squaring a wave’s amplitude to find the energy of the wave. Since the total probability of observing all the states of the quantum system must add up to 100%, the amplitudes must obey this rule:
+**Amplitudes** are very important because their squared magnitudes give the probabilities of measurement outcomes. The probability of measuring the particle in state $\lvert 0 \rangle$ is $\lvert \alpha \rvert ^2$, and the probability of measuring the particle in state $\lvert 1 \rangle$ is $\lvert \beta \rvert ^2$. Why take the squared magnitude? The short answer is that it gives the correct experimental predictions for this choice of representation.[^1] Taking the squared magnitude of a complex amplitude is analogous to using the square of a wave’s amplitude to find its intensity. Since the total probability of observing all the states of the quantum system must add up to 100%, the amplitudes must obey this rule:
 
 ```{math}
 :label: eq-2-2
@@ -83,7 +81,7 @@ This is called a **normalization** rule. The coefficients *α* and *β* can alwa
    \end{aligned}
    ```
 
-   One common misconception is that the measurement of a single qubit will result in a weighted average of the |0〉 and |1〉 states. It is important to note that after you perform the measurement on a single qubit, the qubit is no longer in a superposition but takes on a definite state of either |0〉 or |1〉.[^2] This means that you would not be able to find *α* or *β* from a single qubit. Instead, we need to create many qubits which are in the same quantum state, and then measure how many of the qubits collapse into |0〉 (giving *α*) and how many collapse into |1〉 (giving *β*). Therefore, multiple identical particles are needed in order to count how many collapse into |0〉 or |1〉.
+   One common misconception is that the measurement of a single qubit will result in a weighted average of the |0〉 and |1〉 states. It is important to note that after you perform the measurement on a single qubit, the qubit is no longer in a superposition but takes on a definite state of either |0〉 or |1〉.[^2] This means that you would not be able to find *α* or *β* from a single qubit. Instead, we need to create many qubits which are in the same quantum state, and then count how often measurement gives |0〉 or |1〉. Those frequencies estimate $|\alpha|^2$ and $|\beta|^2$, not the amplitudes themselves. To determine the relative phase and reconstruct an unknown qubit state, we also need measurements of identically prepared qubits in other bases.
 
 (sec-2-2)=
 ## 2.2 Matrix Representation
@@ -104,7 +102,7 @@ The states |0〉 and |1〉 are usually represented as
 |0\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad  |1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}.
 ```
 
-Experimentally, a qubit’s state can be changed through some physical action such as applying an electromagnetic laser or passing it through an optical device. Changing a qubit’s state through a physical action mathematically corresponds to multiplying the qubit vector |*ψ*〉 by some **unitary matrix** *U* so that after the operation the state is now |*ψ*′〉 = *U*|*ψ*〉. Unitary is a mathematical term which expresses that *U* can only act on the qubit in such a way that the total probability |*α*|² + |*β*|² does not change. A matrix *U* is unitary if the matrix product of *U* and its conjugate transpose *U*† (called *U*-dagger) multiplies to give the identity matrix: $UU^{\dagger} = U^{\dagger}U = 1$. This is very important because, in all mathematical constructions of quantum mechanics, one fundamental assumption is that each (matrix) operator must be unitary. This ensures that after changing any state through an action, the total probability to observe all possible states will still add up to 100%. If this did not happen, then we could not interpret the results of quantum mechanics to be probabilistic, and the results would disagree with the many experiments that have been performed to date. The physical action of interacting with the state corresponds mathematically to applying a unitary operator.
+Experimentally, a qubit’s state can be changed through some physical action such as applying an electromagnetic laser or passing it through an optical device. Changing a qubit’s state through a physical action mathematically corresponds to multiplying the qubit vector |*ψ*〉 by some **unitary matrix** *U* so that after the operation the state is now |*ψ*′〉 = *U*|*ψ*〉. Unitary is a mathematical term which expresses that *U* can only act on the qubit in such a way that the total probability |*α*|² + |*β*|² does not change. A matrix *U* is unitary if the matrix product of *U* and its conjugate transpose *U*† (called *U*-dagger) multiplies to give the identity matrix: $UU^{\dagger} = U^{\dagger}U = 1$. For an isolated qubit, reversible evolution is represented by a unitary operator. This preserves the total probability of all possible outcomes. Measurement is a different operation: it produces an outcome and generally changes the state, so the measurement update is not described by a unitary gate.
 
 ### 2.2.1 Examples
 
@@ -159,11 +157,10 @@ Experimentally, a qubit’s state can be changed through some physical action su
 (sec-2-3)=
 ## 2.3 Bloch Sphere
 
-A single qubit can be visualized using the Bloch sphere. The Bloch sphere is a visual representation of a qubit with similar geometric properties to the unit circle from trigonometry. Each point on the Bloch sphere corresponds to a different possible superposition of a single qubit. The top and bottom of the sphere correspond to the two measurable states of the qubit, |0〉 and |1〉. An arrow on the Bloch sphere, which can point to any of the different locations on the surface of the sphere, indicates the current state of the qubit. Figure [](#fig-2-3) shows four examples of how the Bloch sphere can be used to visualize different qubit states. When the arrow is not pointing directly to the top or bottom of the sphere, the qubit is in a superposition state. For example, everywhere around the equator the qubit has a 50/50 chance of collapsing into |0〉 or |1〉 upon measurement. The exact location on the equator corresponds to a distinct state, where the amplitudes can have different signs and be either real or imaginary numbers.
+A single qubit can be visualized using the Bloch sphere. The Bloch sphere is a visual representation of a qubit with similar geometric properties to the unit circle from trigonometry. Each point on the surface of the Bloch sphere corresponds to a different pure state of a single qubit; the poles are the basis states, and other points represent superpositions in this basis. The top and bottom of the sphere correspond to the two measurable states of the qubit, |0〉 and |1〉. An arrow on the Bloch sphere, which can point to any of the different locations on the surface of the sphere, indicates the current state of the qubit. Figure [](#fig-2-3) shows four examples of how the Bloch sphere can be used to visualize different qubit states. When the arrow is not pointing directly to the top or bottom of the sphere, the qubit is in a superposition state. For example, everywhere around the equator the qubit has a 50/50 chance of collapsing into |0〉 or |1〉 upon measurement. The exact location on the equator corresponds to a distinct state, where the amplitudes can have different signs and be either real or imaginary numbers.
 
 ```{figure} ../images/ch-02/490703_1_En_2_Fig3_HTML.png
 :label: fig-2-3
-
 :alt: The state of a qubit is represented by an arrow on the Bloch sphere
 
 
@@ -175,7 +172,6 @@ When the state of the qubit is changed, the arrow rotates to a different positio
 
 ```{figure} ../images/ch-02/490703_1_En_2_Fig4_HTML.png
 :label: fig-2-4
-
 :alt: A cartoon of the Bloch sphere depicted as the Earth, and the state of Schrödinger’s cat represented as a location on Earth
 
 
@@ -197,13 +193,13 @@ The Bloch sphere is a helpful visual aid for understanding how a qubit can have 
 (sec-2-4)=
 ## 2.4 Physical Realization of Qubits
 
-In a classical computer, the 0-bit and 1-bit values mathematically represent the two allowed voltages across a wire in a classical circuit. Semiconductor devices called transistors are used to control what happens to these voltages. A question frequently posed by new students is “What is a qubit made out of?” As quantum computers are based on fundamentally different concepts than classical computers, they must be built from completely different technology, i.e. it is not possible to have a classical current in a superposition of both flowing and not flowing through a wire. Quantum computers are still in their infancy, and so there are many different candidates for the technology to build them. Some technologies are based on optical systems, others use superconductors,[^3] and there are others based on molecules. It is still unclear if any of these are more beneficial than the others, and it is even more unclear if all future quantum computers will be built from the same technology or if there will be many different types of quantum computers available (in the same way there exist both XBox and PlayStation game consoles, but both have the same general purpose—interactive gaming). We will study two different experiments which illustrate the properties of the qubits, but the engineering details of building a quantum computer are well beyond the scope of this introduction.
+In a classical computer, the 0-bit and 1-bit values mathematically represent the two allowed voltages across a wire in a classical circuit. Semiconductor devices called transistors are used to control what happens to these voltages. A question frequently posed by new students is “What is a qubit made out of?” As quantum computers are based on fundamentally different concepts than classical computers, they require devices that preserve and control quantum states. A qubit cannot be modeled simply as a classical current that is either flowing or not flowing through a wire. Quantum computers are still in their infancy, and so there are many different candidates for the technology to build them. Some technologies are based on optical systems, others use superconductors,[^3] and there are others based on molecules. It is still unclear if any of these are more beneficial than the others, and it is even more unclear if all future quantum computers will be built from the same technology or if there will be many different types of quantum computers available (in the same way there are both Xbox and PlayStation game consoles, but both have the same general purpose—interactive gaming). We will study two different experiments which illustrate the properties of the qubits, but the engineering details of building a quantum computer are well beyond the scope of this introduction.
 
 (sec-2-5)=
 ## 2.5 Big Ideas
 
 1. A qubit can be in a superposition of |0〉 and |1〉 states. The Bloch sphere can be used to visually represent a single qubit.
-2. A qubit can be written in terms of amplitudes. Each squared amplitude corresponds to the probability of measuring the qubit in |0〉 or |1〉.
+2. A qubit can be written in terms of amplitudes. The squared magnitude of each amplitude gives the probability of measuring the qubit in |0〉 or |1〉.
 3. A physical change to a qubit mathematically corresponds to unitary matrices which multiply the qubit amplitudes.
 
 (sec-2-6)=
@@ -211,10 +207,11 @@ In a classical computer, the 0-bit and 1-bit values mathematically represent the
 
 1. If a coin is a classical bit of information (heads = 1 and tails = 0), how is the number 2 represented in standard 8-bit notation using coins? (Hint: Find the 8-bit representation of the number 2, then convert to H’s and T’s.)
 
-2. Using Table [](#tbl-2-1), can you figure out what this binary message 01000011 01000001 01010100 says? (Note: This is actually how your computer and phone decode information from bits to text.)
+2. Using [](#tbl-2-1), can you figure out what this binary message 01000011 01000001 01010100 says? (Note: This is actually how your computer and phone decode information from bits to text.)
 
-(tbl-2-1)=
-**Table 2.1** Table for message
+:::{table} Table for message
+:label: tbl-2-1
+:enumerator: 2.1
 
 | Character | Binary code | Character | Binary code |
 | --- | --- | --- | --- |
@@ -231,6 +228,7 @@ In a classical computer, the 0-bit and 1-bit values mathematically represent the
 | K | 01001011 | X | 01011000 |
 | L | 01001100 | Y | 01011001 |
 | M | 01001101 | Z | 01011010 |
+:::
 
 3. Assume a flipped coin can be measured as either heads (H) or tails (T).
 
@@ -285,7 +283,6 @@ In a classical computer, the 0-bit and 1-bit values mathematically represent the
 
     ```{figure} ../images/ch-02/490703_1_En_2_Fig5_HTML.png
     :label: fig-2-5
-
     :alt: A qubit’s state is shown on the Bloch sphere
 
 

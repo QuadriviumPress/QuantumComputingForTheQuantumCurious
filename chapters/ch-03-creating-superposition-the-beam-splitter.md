@@ -5,7 +5,7 @@ label: ch-3
 doi: 10.1007/978-3-030-61601-4_3
 ---
 
-Now that we have explored qubits and the phenomenon of superposition, we can ask the question: how do we know that superposition actually happens? What is the evidence that shows that a quantum particle really does exist in two different locations at the same time while in a quantum superposition? The nature of science means that experiments are constantly updating previous results, so are there other interpretations of the experimental results that can explain the data without the need for superposition? In this chapter we’ll explore the experimental evidence that debunks interpretations other than quantum superposition. Further, while a flipping coin is a simple model of a qubit, it is not very useful for building a quantum computer because it does not exhibit all of the properties of a true quantum superposition. For example, we cannot manipulate the superposition amplitudes. In this chapter, we will study some real physical examples of quantum particles in a superposition containing two states. These examples include a photon in a beam splitter and the Mach–Zehnder interferometer.
+Now that we have explored qubits and the phenomenon of superposition, we can ask the question: how do we know that superposition actually happens? What observations distinguish a quantum superposition of paths from a classical uncertainty about which path a particle took? In this chapter, we will use interference in a Mach–Zehnder interferometer to test these different descriptions. The observations support the quantum model, although the experiment alone does not settle every interpretation of quantum mechanics. A flipping coin illustrates uncertain outcomes, but it cannot model the relative phase and interference of quantum amplitudes. In this chapter, we will study some real physical examples of quantum particles in a superposition containing two states. These examples include a photon in a beam splitter and the Mach–Zehnder interferometer.
 
 (sec-3-1)=
 ## 3.1 Beam Splitter
@@ -14,7 +14,6 @@ In classical optics, a **beam splitter** acts like a partially reflective mirror
 
 ```{figure} ../images/ch-03/490703_1_En_3_Fig1_HTML.png
 :label: fig-3-1
-
 :alt: A beam splitter reflects 50% of the incident light and transmits 50% of the incident light
 
 
@@ -26,25 +25,23 @@ One way to visualize the beam splitter is to imagine a barrier with holes random
 
 ```{figure} ../images/ch-03/490703_1_En_3_Fig2_HTML.png
 :label: fig-3-2
+:alt: Yellow barrier with several round holes, illustrating how an incoming water wave can pass through openings and reflect from the solid surface
 
-:alt: A beam splitter reflects 50% of the incident light and transmits 50% of the incident light
 
-
-A beam splitter reflects 50% of the incident light and transmits 50% of the incident light.
+A barrier with holes offers a water-wave analogy for partial transmission and reflection.
 ```
 
 
 **Question 1** What would happen if a classical particle such as a soccer ball were randomly kicked at the barrier? Assume the ball can fit through the holes.
 
-Experiments demonstrate that light behaves both like a wave (Young’s double-slit experiment) and a particle (photoelectric effect, Compton effect). Classically, light is thought of as a wave consisting of continually oscillating electric and magnetic fields. However, light can also be thought of as a stream of particles called **photons**. Photons have no mass but carry the light’s energy from one point to another at the speed of light. A laser beam is comprised of photons. If you turn down the intensity of your laser, you can even send one photon at a time, as shown in Fig. [](#fig-3-3). As setting up a single photon source and detector requires specialized equipment, we will instead run a simulator to explore the quantum effects of photons.
+Experiments demonstrate that light behaves both like a wave (Young’s double-slit experiment) and a particle (photoelectric effect, Compton effect). Classically, light is thought of as a wave consisting of continually oscillating electric and magnetic fields. However, light can also be thought of as a stream of particles called **photons**. Photons have no mass but carry the light’s energy from one point to another at the speed of light. A laser beam is comprised of photons. A heavily attenuated laser can produce pulses that often contain no photon and sometimes contain one; it is an approximation to a single-photon source, as shown in Fig. [](#fig-3-3). As setting up a single photon source and detector requires specialized equipment, we will instead run a simulator to explore the quantum effects of photons.
 
 ```{figure} ../images/ch-03/490703_1_En_3_Fig3_HTML.png
 :label: fig-3-3
+:alt: A light source sends faint pulses toward a beam splitter, with individual detector events representing photon arrivals
 
-:alt: Low-intensity light is a stream of single photons
 
-
-Low-intensity light is a stream of single photons.
+Faint light produces individual photon detection events; an attenuated laser does not guarantee exactly one photon in every pulse.
 ```
 
 
@@ -52,7 +49,6 @@ Low-intensity light is a stream of single photons.
 
 ```{figure} ../images/ch-03/490703_1_En_3_Fig4_HTML.png
 :label: fig-3-4
-
 :alt: A single photon is sent at a beam splitter and the outcome is measured with detectors to see whether the beam splitter transmits or reflects
 
 
@@ -94,7 +90,6 @@ At this point you may be thinking that the photon was either transmitted or refl
 
 ```{figure} ../images/ch-03/490703_1_En_3_Fig5_HTML.png
 :label: fig-3-5
-
 :alt: The beam splitter puts the photon into a superposition state
 
 
@@ -112,17 +107,16 @@ If we let the transmitted path be |0〉 (detector 1), and the reflected path be 
 
 Upon measurement, will the superposition collapse into either |0〉 or |1〉? Unfortunately, it is not possible to predict which detector will be activated at any given time as quantum mechanics is inherently probabilistic.
 
-The phenomenon of superposition allows quantum computers to perform operations on two bits of information at once with a single qubit. In fact, it is possible to create a general purpose (also called universal) quantum computer using photons as qubits, beam splitters to create superposition, and pieces of glass that slow down the photons along selected paths (phase shifters).[^2]
+Superposition lets quantum gates manipulate amplitudes for both basis states of a qubit. Interference between those amplitudes, rather than simply reading out two bits, is what makes this useful for computation. In fact, it is possible to create a general purpose (also called universal) quantum computer using photons as qubits, beam splitters to create superposition, and pieces of glass that slow down the photons along selected paths (phase shifters).[^2]
 
 (sec-3-2)=
 ## 3.2 Mach–Zehnder Interferometer
 
-To convince ourselves that the photon really did take two paths at once, let’s see what happens when a second beam splitter is added. This experimental setup is shown in Fig. [](#fig-3-6). The mirrors redirect the photons towards the second beam splitter. This device configuration is known as a **Mach–Zehnder interferometer**. The set up is very sensitive to the distances between the mirrors and detectors, which have to be the same or differ by an integer number of the photon’s wavelength.
+To test whether a classical uncertainty about the photon’s path is sufficient, let’s see what happens when a second beam splitter is added. This experimental setup is shown in Fig. [](#fig-3-6). The mirrors redirect the photons towards the second beam splitter. This device configuration is known as a **Mach–Zehnder interferometer**. The setup is sensitive to the difference in length between the two paths. That difference controls their relative phase and therefore which output detector is favored.
 
 ```{figure} ../images/ch-03/490703_1_En_3_Fig6_HTML.png
 :label: fig-3-6
-
-:alt: Schematic of the Mach–Zehnder interferometer from...
+:alt: A photon source feeds two beam splitters; mirrors route the upper and lower paths to recombine before Detectors 1 and 2
 
 
 Schematic of the Mach–Zehnder interferometer from [https://www.st-andrews.ac.uk/physics/quvis/simulations_html5/sims/Mach-Zehnder-Interferometer/Mach_Zehnder_Interferometer.html](https://www.st-andrews.ac.uk/physics/quvis/simulations_html5/sims/Mach-Zehnder-Interferometer/Mach_Zehnder_Interferometer.html)
@@ -143,7 +137,7 @@ Schematic of the Mach–Zehnder interferometer from [https://www.st-andrews.ac.u
 - (b) Always detector 2
 - (c) Detector 1 OR detector 2
 - (d) Both detector 1 AND detector 2
-- (e) Neither.
+- (e) Neither
 
 **Question 8** Construct the Mach–Zehnder interferometer in the beam splitter simulator[^3] and fire a single photon. Which detectors are triggered?
 
@@ -161,7 +155,6 @@ What does it mean for a photon to be phase shifted? In this case, it is more int
 
 ```{figure} ../images/ch-03/490703_1_En_3_Fig7_HTML.png
 :label: fig-3-7
-
 :alt: The light through a beam splitter is phase shifted if it is reflected from the dielectric side but not phase shifted if it is reflected from the glass side
 
 
@@ -183,8 +176,7 @@ The behavior of the interferometer can also be viewed from the particle perspect
 
 ```{figure} ../images/ch-03/490703_1_En_3_Fig8_HTML.png
 :label: fig-3-8
-
-:alt: The blue path shows the photon’s path if it is reflected by Beam Splitter 1. The red path shows the path if the photon is transmitted. Because Beam Splitter 2 has the dielectric facing downwards,...
+:alt: Red upper and blue lower paths recombine at the second beam splitter; their amplitudes reinforce at Detector 1 and cancel at Detector 2
 
 
 The blue path shows the photon’s path if it is reflected by Beam Splitter 1. The red path shows the path if the photon is transmitted. Because Beam Splitter 2 has the dielectric facing downwards, blue is phase shifted upon reflection.
@@ -197,7 +189,6 @@ Even though the output of the first beam splitter is 50/50, the second beam spli
 
 ```{figure} ../images/ch-03/490703_1_En_3_Fig9_HTML.png
 :label: fig-3-9
-
 :alt: Coin analogy for the interferometer. Sending a photon through one beam splitter puts it in superposition, but adding a second beam splitter undoes the superposition and recovers the original state
 
 
@@ -205,7 +196,7 @@ Coin analogy for the interferometer. Sending a photon through one beam splitter 
 ```
 
 
-There is hidden information in the superposition state. In the Mach–Zehnder photon qubit, the information is encoded in the form of the phase shift. In the experiment shown in Fig. [](#fig-3-8), we chose the phase shift to have a value of *π*. However, we could have just as easily chosen the phase shift to have any value between 0 and 2*π* (the angles of a circle). Each separate choice of phase shift would produce a different type of superposition state that would still produce the same measurable 50/50 outcome. This is represented on the Bloch sphere by different locations along the equator.[^4] This phase shift information is present in the amplitudes but not the square of the amplitudes (and hence hidden from us in the Mach–Zehnder experiment–though we could make another experiment to try to determine this information). Here are two simple examples of distinct states that can be created in two different experimental arrangements of the Mach–Zehnder experiment which still have the same 50/50 probability:
+There is hidden information in the superposition state. In the Mach–Zehnder photon qubit, the information is encoded in the form of the phase shift. In the experiment shown in Fig. [](#fig-3-8), we chose the phase shift to have a value of *π*. However, we could have just as easily chosen the phase shift to have any value between 0 and 2*π* (the angles of a circle). Each separate choice of phase shift would produce a different type of superposition state that would still produce the same measurable 50/50 outcome. This is represented on the Bloch sphere by different locations along the equator.[^4] This phase shift information is present in the amplitudes but not the square of the amplitudes (and hence hidden from a measurement of the two path probabilities alone, though interference can reveal it). Here are two simple examples of distinct states that can be created in two different experimental arrangements of the Mach–Zehnder experiment which still have the same 50/50 probability:
 
 ```{math}
 :label: eq-3-2
@@ -220,8 +211,8 @@ Furthermore, in the Mach–Zehnder experiment we created a superposition, perfor
 (sec-3-3)=
 ## 3.3 Big Ideas
 
-1. A photon can be put into a superposition using a beam splitter. After passing through the beam splitter, a photon takes both paths simultaneously.
-2. The Mach–Zehnder interferometer shows how the photon really does take two paths at once. This is conclusive experimental evidence of superposition of photons.
+1. A beam splitter can prepare a photon in a superposition of two possible paths. This state is described by amplitudes for both paths.
+2. The Mach–Zehnder interferometer shows interference between the two possible paths. Its output is explained by a superposition of path amplitudes, whereas a simple classical mixture of paths predicts different detector statistics.
 
 (sec-3-4)=
 ## 3.4 Check Your Understanding
@@ -238,7 +229,6 @@ Furthermore, in the Mach–Zehnder experiment we created a superposition, perfor
 
    ```{figure} ../images/ch-03/490703_1_En_3_Fig10_HTML.png
    :label: fig-3-10
-
    :alt: The experiment varies the position of Detector 2 and records the number of coincidences, i.e., the number of times both detectors are triggered simultaneously
 
 
@@ -248,8 +238,7 @@ Furthermore, in the Mach–Zehnder experiment we created a superposition, perfor
 
    ```{figure} ../images/ch-03/490703_1_En_3_Fig11_HTML.png
    :label: fig-3-11
-
-   :alt: Data is shown above for light bursts sent from the laser every 0.4 μs. Figure reproduced with permission of Martin Laforest and the Communications and Strategic Initiatives Team at the Institute...
+   :alt: Coincidence count versus time delay from minus 2 to plus 2 microseconds; repeated tall peaks occur away from zero, where the count is small
 
 
    Data is shown above for light bursts sent from the laser every 0.4 μs. Figure reproduced with permission of Martin Laforest and the Communications and Strategic Initiatives Team at the Institute for Quantum Computing, University of Waterloo Outreach department.
@@ -263,7 +252,6 @@ Furthermore, in the Mach–Zehnder experiment we created a superposition, perfor
 
    ```{figure} ../images/ch-03/490703_1_En_3_Fig12_HTML.png
    :label: fig-3-12
-
    :alt: Matrix formulation of the Mach–Zehnder apparatus
 
 
@@ -277,7 +265,6 @@ Furthermore, in the Mach–Zehnder experiment we created a superposition, perfor
 
    ```{figure} ../images/ch-03/490703_1_En_3_Fig13_HTML.png
    :label: fig-3-13
-
    :alt: A third detector (your eye) is added to the Mach–Zehnder apparatus
 
 

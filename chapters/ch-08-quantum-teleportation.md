@@ -5,7 +5,7 @@ label: ch-8
 doi: 10.1007/978-3-030-61601-4_8
 ---
 
-One interesting application of entanglement is **quantum teleportation**, which is a technique for transferring an *unknown* quantum state from one place to another. In science fiction, teleportation generally involves a machine scanning a person and another machine reassembling the person on the other end. The original body disintegrates and no longer exists. Similarly, quantum teleportation works by “scanning” the original qubit, sending a recipe, and reconstructing the qubit elsewhere. The original qubit is not physically destroyed in the science fiction sense, but it is no longer in the same state. Otherwise, the previously mentioned **no-cloning** theorem—which states that a qubit cannot be exactly copied onto another qubit—would be violated.[^1] As we will see, the “scanning” part poses a problem which can only be solved by leveraging quantum entanglement.
+One application of entanglement is **quantum teleportation**, a protocol that transfers an *unknown* quantum state to a distant qubit. It requires a previously shared entangled pair and two classical bits sent from the sender to the receiver. The original qubit's state is lost when the sender measures it, so the protocol does not copy an unknown state or violate the no-cloning theorem.[^1] No person or particle travels through the classical communication channel.
 
 (sec-8-1)=
 ## 8.1 Scanning a Qubit
@@ -14,28 +14,28 @@ One interesting application of entanglement is **quantum teleportation**, which 
 
 The measurement histogram should look identical if either of the |0〉 or |1〉 states is used initially. Then how can we tell what the initial state was after performing a Hadamard operation? In the beam splitter, we determined where the photon came from by adding a second beam splitter to create interference. The way to measure and distinguish between them is to add a second Hadamard gate. As we have seen in Sect. [](#sec-2-2), all gates must be unitary to conserve probabilities. The unitary condition ensures that all gates are reversible: we can undo the action of any gate by applying its conjugate transpose. This is easily seen in matrix form as unitary matrices are defined as $UU^\dagger = 1$. As the Hadamard gate is its own conjugate transpose, applying a second Hadamard gate is equivalent to undoing the first. This is how the original state is recovered.
 
-**Question 2** If a qubit is in the unknown state *a*|0〉 + *b*|1〉, what is the result of a single measurement?
+**Question 2** If a qubit is in the unknown state $a|0\rangle + b|1\rangle$, what is the result of a single measurement in the $|0\rangle, |1\rangle$ basis?
 
 - (A) 0
 - (B) 1
-- (C) 0 with probability *a*² and 1 with probability *b*²
+- (C) 0 with probability $|a|^2$ and 1 with probability $|b|^2$
 - (D) A number between 0 and 1
 
-**Question 3** What is the result of a second measurement after the first from Question 2?
+**Question 3** What is the result of an immediate second measurement in the same basis, with no intervening operation, after the first measurement from Question 2?
 
 - (A) 0 if the first measurement is 0 or 1 if the first measurement is 1
 - (B) 0 if the first measurement is 1 or 1 if the first measurement is 0
-- (C) 0 with probability *a*² and 1 with probability *b*²
+- (C) 0 with probability $|a|^2$ and 1 with probability $|b|^2$
 - (D) A number between 0 and 1
 
-Given a single qubit, it is not possible to determine how much of a superposition it is in if you only have this single qubit, i.e., you cannot determine the coefficients of |0〉 and |1〉 in a general state from one measurement! Note that if the state is known (from measuring many independent qubits that have been prepared identically), then you can just directly send the recipe to prepare this qubit. It is only when the state is unknown and when there is only one qubit that we have to think harder about how to efficiently “scan” the particle.
+A single measurement of one qubit cannot reveal its unknown amplitudes $a$ and $b$. If a state is known from its preparation procedure or from measurements on many identically prepared copies, Alice could instead send Bob a classical description of how to prepare it. Teleportation addresses the case where Alice has an unknown state and cannot send the original qubit itself.
 
 (sec-8-2)=
 ## 8.2 Teleportation Protocol
 
-The way to get around the problem of not being able to measure the qubit (and avoid collapsing the unknown state onto a basis state) is to “scan” the qubit indirectly with the help of entangled particles. This [comic](https://www.jpl.nasa.gov/news/news.php?feature=4384)[^2] illustrates the basic idea. The protocol is as follows:
+Alice cannot read out the full unknown state from one qubit. Instead, she performs a joint operation and measurements on it and her half of a shared entangled pair. This [comic](https://www.jpl.nasa.gov/news/news.php?feature=4384)[^2] illustrates the basic idea. The protocol is as follows:
 
-1. Alice and Bob meet up and make a qubit each (which we will call qubits #2 and #3). At this point, the two qubits are completely independent and we can think of the qubits as two different balls that do not contain any information about the other. Then, Alice and Bob decide to entangle their qubits by causing an interaction between the qubits, for example by applying a CNOT gate. Think of entanglement as Alice writing some information on Bob’s ball that only she knows how to read, and Bob writing information on Alice’s ball that only he knows how to read. For Bob to read Alice’s information on his ball, Alice needs to send him a (classical) message describing how to understand it, and vice-versa. They do not tell each other how to read the information yet. One possible entangled state (called the Bell-state) that they decide to create is
+1. Alice and Bob prepare qubits #2 and #3 in a shared Bell state. One way is to apply a Hadamard gate to one qubit followed by a CNOT gate, as shown later in Fig. [](#fig-8-6). Alice keeps qubit #2, and Bob takes qubit #3. Their shared state is
 
    ```{math}
    :label: eq-8-1
@@ -47,7 +47,6 @@ The way to get around the problem of not being able to measure the qubit (and av
 
    ```{figure} ../images/ch-08/490703_1_En_8_Fig1_HTML.png
    :label: fig-8-1
-
    :alt: Alice and Bob’s qubits are entangled
 
 
@@ -59,7 +58,6 @@ The way to get around the problem of not being able to measure the qubit (and av
 
    ```{figure} ../images/ch-08/490703_1_En_8_Fig2_HTML.png
    :label: fig-8-2
-
    :alt: Alice has a qubit (*#*1) in an unknown state she wants to transfer to Bob
 
 
@@ -67,11 +65,10 @@ The way to get around the problem of not being able to measure the qubit (and av
    ```
 
 
-3. Alice makes her two qubits interact using a CNOT gate (qubits #1 and #2) and measures the qubit she originally had (qubit #2). She then sends the unknown qubit to be teleported (qubit #1) through a Hadamard gate and afterwards measures the output. Recall that the Hadamard gate is used to create a superposition of states. The current situation is shown in Fig. [](#fig-8-3).
+3. Alice applies a CNOT with qubit #1 as control and qubit #2 as target. She then applies a Hadamard gate to qubit #1 and measures both of her qubits. The operations and measurements are shown in Fig. [](#fig-8-3).
 
    ```{figure} ../images/ch-08/490703_1_En_8_Fig3_HTML.png
    :label: fig-8-3
-
    :alt: Alice passes her two qubits through a CNOT gate
 
 
@@ -79,7 +76,7 @@ The way to get around the problem of not being able to measure the qubit (and av
    ```
 
 
-   Because Alice’s original qubit (qubit #2) was entangled with Bob’s, the CNOT interaction with qubit #1 immediately changes the state of Bob’s qubit.
+   Bob cannot detect Alice's operations by measuring his qubit alone. His local measurement statistics remain unchanged until he receives her classical message and applies the appropriate correction.
 
    When understanding quantum teleportation, it may be more insightful to see the mathematical description of this three-qubit protocol. Qubit #1 is the qubit to be teleported, and qubits #2 and #3 are the entangled pair shared by Alice and Bob. In ket notation, the three-qubit state is written in the order | #1 #2 #3 〉. In addition, the three-qubit state can be written in ket notation in different ways as long as the order of the qubits is kept unchanged. For example, if qubit #1 = |0〉, qubit #2 = |1〉, and qubit #3 = |1〉, they can be written as |0〉|1〉|1〉 = |011〉 = |0〉|11〉 = |01〉|1〉. Sometimes it is easier to split up the multi-qubit state like this to explicitly show if a gate is acting on a single qubit.
 
@@ -123,19 +120,18 @@ The way to get around the problem of not being able to measure the qubit (and av
    \frac{1}{2} \Big( |00\rangle(a|0\rangle+b|1\rangle)+|10\rangle(a|0\rangle-b|1\rangle)+|01\rangle(a|1\rangle+b|0\rangle)+|11\rangle(a|1\rangle-b|0\rangle)\Big)
    ```
 
-   Remember that qubit #1 and qubit #2 are the ones that belong to Alice. We see that the state of Bob’s qubit #3 has changed by applying the CNOT and Hadamard gates to Alice’s qubits. As can be seen in Eq. ([](#eq-8-6)), Bob’s qubit is currently in one of four possible superposition states. This is shown in Fig. [](#fig-8-4).
+   Qubits #1 and #2 belong to Alice. Equation ([](#eq-8-6)) expresses the joint state as four branches associated with her possible two-bit measurement outcomes. Conditional on a particular result, Bob's qubit has the corresponding state in Fig. [](#fig-8-4). Before Alice tells him the result, Bob does not know which correction to apply.
 
    ```{figure} ../images/ch-08/490703_1_En_8_Fig4_HTML.png
    :label: fig-8-4
-
-   :alt: Four possible superposition states of Bob’s qubit
+   :alt: Bob's qubit has one of four conditional states, a|0〉+b|1〉, a|0〉−b|1〉, a|1〉+b|0〉, or a|1〉−b|0〉, depending on Alice's measurement
 
 
    Four possible superposition states of Bob’s qubit
    ```
 
 
-   The four possible superposition states of Bob’s qubit depend on Alice’s original qubit #2 through the initial entanglement in Step 1, as well as depending on the unknown qubit #1 to be teleported from the CNOT gate in Step 3. The reason we need to measure the state of Alice’s qubit #2 and qubit #1 is to figure out the way Bob’s qubit depends on these two. The current status is shown in Fig. [](#fig-8-4). Note that Bob has not done anything with his qubit at this stage.
+   Alice's two measurement results identify which of the four corrections Bob needs. At this stage, Bob has done nothing to his qubit and cannot recover the unknown state without those results.
 
 4. Alice now sends the two classical bits of information from the measurements to Bob by email or phone. According to Eq. ([](#eq-8-6)), her measurements can be 00, 10, 01 or 11, each with 25% probability.
 
@@ -143,7 +139,6 @@ Depending on the measurement obtained by Alice, Bob can recover the original sta
 
 ```{figure} ../images/ch-08/490703_1_En_8_Fig5_HTML.png
 :label: fig-8-5
-
 :alt: The final result of teleportation between Bob and Alice
 
 
@@ -151,19 +146,18 @@ The final result of teleportation between Bob and Alice
 ```
 
 
-Throughout the teleportation process, the original qubit #1 that has to be teleported does not remain in its original quantum state: *a*|0〉 + *b*|1〉. This is because Alice performs a measurement on it during the teleportation protocol. As a result, there is no copy of qubit #1 existing at any time, and so teleportation does not contradict the no-cloning theorem. It is important to understand that neither Alice nor Bob know what qubit #1’s coefficients *a* or *b* are at any point in the process. All they know is that qubit #1 has been teleported from Alice to Bob. The full quantum teleportation circuit is illustrated in Fig. [](#fig-8-6).
+Alice's measurement removes the input qubit's original state. Bob recovers that state on his qubit only after receiving her two classical bits and applying the corresponding gates. There is no extra copy of the unknown state, so the protocol respects the no-cloning theorem. Neither Alice nor Bob knows the amplitudes $a$ and $b$ simply from running the protocol. The full circuit is illustrated in Fig. [](#fig-8-6).
 
 ```{figure} ../images/ch-08/490703_1_En_8_Fig6_HTML.png
 :label: fig-8-6
-
-:alt: The full quantum circuit for quantum teleportation. The dashed box entangles Alice’s and Bob’s qubits to make the Bell state. Afterwards, the quantum teleportation protocol described in the text...
+:alt: Three-wire teleportation circuit: Hadamard and CNOT prepare a Bell pair, Alice applies CNOT and Hadamard and measures two qubits, and Bob applies X and Z corrections controlled by her two results
 
 
 The full quantum circuit for quantum teleportation. The dashed box entangles Alice’s and Bob’s qubits to make the Bell state. Afterwards, the quantum teleportation protocol described in the text is performed.
 ```
 
 
-Why is this protocol interesting? To answer this, imagine Alice and Bob met a long time ago and each took one qubit of the entangled pair. Bob is now traveling around the world and can only communicate with Alice by phone or email. If Alice wanted to transfer quantum data to Bob without quantum teleportation, she would have to meet Bob and physically give Bob her qubit. Quantum teleportation allows Alice to send *quantum* information using a *classical* communications channel. All she has to do is make some measurements and email Bob the values. Bob can then apply the correct recipe to his qubit to bring it to the state of the original qubit #1. As well as sending information between two people, quantum teleportation is a useful way of causing interaction between different parts of a quantum computer (by teleporting a qubit to a different part of the quantum computer you want to interact with).[^3]
+Why is this protocol interesting? Imagine Alice and Bob shared an entangled pair before moving apart. Alice can then transfer an unknown quantum state to Bob without physically sending the input qubit. She still needs to send him two classical bits through an ordinary channel; Bob uses them to choose the corrections that recover the state on his qubit. Teleportation can also move quantum information between parts of a computing system.[^3]
 
 (sec-8-3)=
 ## 8.3 Big Ideas
@@ -172,7 +166,7 @@ Why is this protocol interesting? To answer this, imagine Alice and Bob met a lo
 
 2. Quantum teleportation sends quantum information by using the entanglement and measurement properties of quantum mechanics.
 
-3. Quantum teleportation does not destroy the qubit to be teleported (like in science fiction). It only transfers the information contained within the qubit without ever needing to know that information.
+3. The input qubit loses its original state when Alice measures it. Bob can recover that state on his qubit without either person learning its amplitudes.
 
 (sec-8-4)=
 ## 8.4 Check Your Understanding

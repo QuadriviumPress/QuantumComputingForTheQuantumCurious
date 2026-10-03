@@ -5,76 +5,76 @@ label: ch-9
 doi: 10.1007/978-3-030-61601-4_9
 ---
 
-We have come a long way from Chap. [](#ch-1). To recap on what we have learned, we have understood important quantum mechanical phenomena such as superposition and measurement (through the Stern-Gerlach and Mach-Zehnder experiments). We have also learned that while quantum computers can in principle break classical encryption protocols, they can also be used to make new secure channels of communication. Furthermore, we have applied quantum logic gates to qubits to perform quantum computations. With entanglement, we teleported the information in an unknown qubit to another qubit. This is quite a substantial achievement.
+We have come a long way from Chap. [](#ch-1). The Stern–Gerlach and Mach–Zehnder examples introduced superposition, measurement, and interference. We have applied gates to qubits, discussed cryptographic uses and risks, and used entanglement in a teleportation protocol. Now we can combine these ideas in a quantum algorithm.
 
-However, we have not yet learned about a fundamental aspect of quantum computing: *quantum algorithms*. Simply put, given a task that we want the quantum computer to perform, a quantum algorithm is how the quantum computer performs this task on some input qubits. One typical example of an algorithm on a classical computer is the search algorithm, e.g., searching a database to find a friend in your friends list. In fact, quantum computers can also implement search algorithms. Grover’s algorithm, one of the two most famous quantum computing algorithms (the other being Shor’s algorithm which we learned about in Chap. [](#ch-5)), uses entanglement to search a database faster than any classical computer can. While studying Grover’s algorithm is outside the scope of this course, we will study the Deutsch-Jozsa Algorithm that shows how quantum computers can perform calculations faster than classical computers. After studying this algorithm, you will have a basis to learn more complicated algorithms.
+A *quantum algorithm* is a sequence of operations designed to solve a specified task using qubits. Grover's algorithm, for example, uses amplitude amplification to reduce the number of queries needed for an unstructured search from order $N$ to order $\sqrt N$; this does not imply that searching an ordinary database will be faster in practice.[^10] Here we study the Deutsch–Jozsa algorithm, which uses interference to solve a carefully defined query problem with fewer queries than any deterministic classical algorithm.
 
 (sec-9-1)=
 ## 9.1 The Power of Quantum Computing
 
-The main advantage that quantum computers have over classical computers is **parallelism**. Because qubits can be in a superposition of states, a quantum computer can perform an operation on all of the states simultaneously. Let’s say we want to know the result of applying some function *f*(*x*) to some number *x*. Two classical computations are needed to find the result for *x* = 0 and for *x* = 1, whereas a quantum computer can evaluate both answers in parallel as displayed in Fig. [](#fig-9-1).
+An operation on a superposition acts on each basis component by linearity. For example, a quantum oracle applied to a superposition of $x=0$ and $x=1$ transforms both components in one query, as suggested by Fig. [](#fig-9-1). A measurement does not reveal both values of $f(x)$, however. A useful quantum algorithm must make amplitudes interfere so that the measurement answers a specific question about the function.
 
 ```{figure} ../images/ch-09/490703_1_En_9_Fig1_HTML.png
 :label: fig-9-1
+:alt: Two classical function evaluations for inputs 0 and 1 compared with one oracle operation on a qubit superposition of 0 and 1
 
-:alt: It takes a classical computer two operations to operate on two pieces of information. A quantum computer with one qubit can operate on two classical pieces of information at once
 
-
-It takes a classical computer two operations to operate on two pieces of information. A quantum computer with one qubit can operate on two classical pieces of information at once.
+An oracle can act on a superposition of inputs 0 and 1 in one query; one measurement cannot reveal both outputs.
 ```
 
 
-If we wanted to compute *f*(*x*) for *x* = 2 (represented as 10 in binary) and *x* = 3 (represented as 11), we would need to add a second qubit. The two-qubit quantum computer can then evaluate all four possibilities at once as shown in Fig. [](#fig-9-2).
+With two input qubits, a superposition can contain all four two-bit strings, as shown in Fig. [](#fig-9-2). The oracle acts on their amplitudes, but the four function values cannot generally be read out from one run.
 
 ```{figure} ../images/ch-09/490703_1_En_9_Fig2_HTML.png
 :label: fig-9-2
+:alt: Four classical input strings 00, 01, 10, and 11 alongside one oracle operation on a superposition of the four two-qubit basis strings
 
-:alt: It takes a classical computer four operations to operate on four pieces of information. A quantum computer with two qubits can operate on four classical pieces of information at once
 
-
-It takes a classical computer four operations to operate on four pieces of information. A quantum computer with two qubits can operate on four classical pieces of information at once.
+An oracle can act on a superposition of four two-bit inputs in one query; the results are not all directly readable.
 ```
 
 
-**Question 1** How many pieces of information can a three-qubit quantum computer process in parallel? Write down all of the states.
+**Question 1** How many computational basis states does a three-qubit system have? Write them down. How many basis strings can one measurement reveal?
 
 The possible states are
 
 ```{math}
 :label: eq-9-1
 
-|{000}\rangle,|{001}\rangle,|{010}\rangle,|{100}\rangle,|{011}\rangle,|{110}\rangle,|{101}\rangle,|{111}\rangle \rightarrow 8\ \text{pieces of information}.
+|{000}\rangle,|{001}\rangle,|{010}\rangle,|{011}\rangle,|{100}\rangle,|{101}\rangle,|{110}\rangle,|{111}\rangle.
 ```
 
-Adding a qubit to a quantum computer doubles its processing power! For a classical computer, you need to double the number of wires in the processor to get double the processing power.[^1] However, with a quantum computer, you only need to add a single qubit to double the processing power! Further, an *n*-qubit system can perform certain 2ⁿ operations at once!
+Three qubits have eight basis states, although one computational-basis measurement reveals only one three-bit string. In general, an $n$-qubit pure state has $2^n$ amplitudes. Adding one qubit doubles that state-space dimension; it does not automatically double useful processing power or provide $2^n$ readable answers.
 
-Separate from the issue of processing power is a concept known as **memory**. In a classical computer, on a standard 64-bit laptop, each number can be represented in the 64-bit binary representation (a simple extension of the 8-bit binary representation you already learned about). If you wanted four numbers on a 64-bit machine at the same time, then you need to have 4 × 64 = 256-bits of memory on your hard drive to store them. On a 64 bit classical computer, for *M* different numbers, you need *M* × 64-bits of memory; i.e., the number of bits needed for memory is linear as a function of the number of numbers required. However, on an *n*-qubit quantum computer, there can be 2ⁿ different coefficients of the quantum state that could in principle hold the numbers and therefore can be used as memory; i.e., the number of qubits needed for memory is logarithmic as a function of the number of numbers you want.
+This large state space affects **simulation**. A general pure state of $n$ qubits requires $2^n$ complex amplitudes in a straightforward classical representation. Some states and circuits have more compact classical descriptions, so this is not a lower bound for every simulation. The amplitudes also cannot serve as directly readable classical memory: measuring the qubits does not disclose all $2^n$ values.
 
-Because classical computers are very advanced and have large processing power and terabytes of memory, classical computers can simulate small quantum computers. As the addition of a single qubit would double the memory required, the largest supercomputer in the U.S.[^2] would only be able to simulate a 46-qubit quantum computer. As of 2018, Google has a quantum computer with a quantum chip (called the Bristlecone) which has 72-qubits.
+Classical computers can simulate many small quantum circuits, but the cost depends on the circuit and simulation method. State-vector simulation becomes expensive as $n$ grows because its memory use scales with $2^n$. A particular qubit count is therefore not a universal boundary between classically simulable and unsimulable quantum systems.
 
 (sec-9-2)=
 ## 9.2 Limitations
 
-While parallelism sounds amazing in theory, it is not immediately useful on its own. A quantum computation can calculate a superposition of the 2ⁿ numbers; however, a measurement still needs to be performed in order to extract information from the quantum computer. One measurement will only show one of those answers and afterwards collapse the superposition into a basis state. Think about it as if the 2ⁿ numbers are all on a secret scratchpad that we cannot see, and nature shows you one random page at a time, then burns the scratchpad. You would need to run the quantum computer at least 2ⁿ times to get all the numbers, therefore negating any advantage over classical computers. As an example of this, the two-qubit quantum computer can calculate the superposition *a*|*f*(00)〉 + *b*|*f*(01)〉 + *c*|*f*(10)〉 + *d*|*f*(11)〉, but measuring this state will result in either *f*(00), *f*(01), *f*(10), *OR* *f*(11). If you are unlucky, due to the randomness of quantum physics, you could repeat the computation four times and still not see all of the possibilities.
+Superposition alone gives no automatic computational advantage. An oracle may encode values of $f(x)$ across many basis components, but one measurement produces only one outcome. Repeating the circuit to sample outcomes does not generally recover every value efficiently; rare outcomes may take many repetitions to observe. Quantum algorithms therefore arrange interference to increase the probability of an answer to a *specific* question. Deutsch–Jozsa asks whether a promised function is constant or balanced, rather than asking for every value of that function.
 
-Quantum computers are therefore only practical for certain types of problems. Since quantum computers are built on quantum physics principles, we intuitively expect that they would be best suited for simulating quantum phenomena directly. Generally, these types of problems look for correlations between different outputs. Due to this, it is generally accepted that quantum computers will not replace classical computers but will be able to perform different calculations that classical computers simply cannot. We will study an example problem which the quantum computer can solve more efficiently than a classical computer.
+Quantum algorithms are especially promising when they exploit structure in a problem, such as periodicity or interference patterns. Simulating quantum systems is another important application. A theoretical reduction in query count may or may not translate into a faster practical computation once circuit construction, noise, and classical alternatives are considered. The next section gives a clear example of a query advantage.
 
 (sec-9-3)=
 ## 9.3 Deutsch-Jozsa Algorithm
 
-Here we provide a proof that quantum computers can be faster than classical computers by explicit construction of a problem.
+Here we compare the number of *oracle queries* needed to solve a specific promised problem. This comparison does not, by itself, compare the running time of complete machines.
 
 ### 9.3.1 The Problem Statement
 
-Let *f*(*x*) be an unknown function that operates on a single qubit. There can only be four different functions that satisfy this requirement, and the four different functions are shown in Table [](#tbl-9-1).
+Let $f:\{0,1\}\to\{0,1\}$ be an unknown Boolean function. There are four possible functions of this form, shown in [](#tbl-9-1).
 
-(tbl-9-1)=
-**Table 9.1** There are only four possible single qubit functions
+:::{table} There are only four possible single qubit functions
+:label: tbl-9-1
+:enumerator: 9.1
 
 | $f_{1}$ | $f_{2}$ | $f_{3}$ | $f_{4}$ |
 | --- | --- | --- | --- |
 | $f_{1}\left ( 0\right )=0$ | $f_{2}\left ( 0\right )=0$ | $f_{3}\left ( 0\right )=1$ | $f_{4}\left ( 0\right )=1$ |
 | $f_{1}\left ( 1\right )=0$ | $f_{2}\left ( 1\right )=1$ | $f_{3}\left ( 1\right )=0$ | $f_{4}\left ( 1\right )=1$ |
+:::
 
 A function is called **constant** if it always outputs the same result for all values of *x*. A function is called **balanced** if it outputs 1 for half of all the possible values of *x* and 0 for the other half. The question posed to the computer is this:
 
@@ -84,13 +84,13 @@ A function is called **constant** if it always outputs the same result for all v
 
 For this single qubit case, the question is answered by checking if *f*(0) = *f*(1). It also turns out in this single qubit case that there are only constant and balanced functions. However, in multiple qubit systems, there exist functions that are neither constant nor balanced. In the multiple qubit scenario, it is important that in the problem statement the function given to the quantum computer is either constant *or* balanced, and not something else.
 
-**Question 2** Which of the functions in Table [](#tbl-9-1) are constant and which are balanced?
+**Question 2** Which of the functions in [](#tbl-9-1) are constant and which are balanced?
 
 The functions *f*₁ and *f*₄ are constant, while *f*₂ and *f*₃ are balanced.
 
 **Question 3** If you run the classical algorithm and see that *f*(0) = 1, could you tell whether the function is constant or balanced?
 
-No, it could either be the balanced function *f*₃ or the constant function *f*₄. A classical computer would have to evaluate both *f*(0) and *f*(1) to determine the answer. How can a quantum computer determine the answer with only one measurement instead of two?
+No. It could be the balanced function *f*₃ or the constant function *f*₄. A deterministic classical algorithm must query both *f*(0) and *f*(1) to guarantee the answer. The quantum circuit below uses one oracle query, followed by a measurement.
 
 ### 9.3.2 Conceptual Understanding
 
@@ -98,7 +98,6 @@ Before we go through the Deutsch-Jozsa Algorithm in detail, it will be useful to
 
 ```{figure} ../images/ch-09/490703_1_En_9_Fig3_HTML.png
 :label: fig-9-3
-
 :alt: The Mach-Zehnder interferometer altered to implement the cartoon version of the Deutsch-Jozsa algorithm. The function implementations are shown in Fig. [](#fig-9-5)
 
 
@@ -110,7 +109,6 @@ The Mach-Zehnder interferometer altered to implement the cartoon version of the 
 
    ```{figure} ../images/ch-09/490703_1_En_9_Fig4_HTML.png
    :label: fig-9-4
-
    :alt: Inputs to the function are photons along two different paths. A photon taking the yellow path is *x* = 0, while a photon taking the red path is *x* = 1
 
 
@@ -118,15 +116,14 @@ The Mach-Zehnder interferometer altered to implement the cartoon version of the 
    ```
 
 
-2. Each of the four functions in Table [](#tbl-9-1) can be modeled by a different experimental setup as shown in Fig. [](#fig-9-5). For example, if we wanted to test *f*₁, we would place a piece of glass along the red path but nothing along the yellow path. A photon passing through the glass will experience an additional phase shift of *π*. The reason that this is only a cartoon demonstration is that the phase shifters do not actually implement the function, as we will see in the next section.
+2. Each of the four functions in [](#tbl-9-1) can be modeled by a different experimental setup as shown in Fig. [](#fig-9-5). For example, if we wanted to test *f*₁, we would place a piece of glass along the red path but nothing along the yellow path. A photon passing through the glass will experience an additional phase shift of *π*. The reason that this is only a cartoon demonstration is that the phase shifters do not actually implement the function, as we will see in the next section.
 
    ```{figure} ../images/ch-09/490703_1_En_9_Fig5_HTML.png
    :label: fig-9-5
+   :alt: Four interferometer cartoons after a beam splitter: f1 has an X box on the red path, f2 has none, f3 has X boxes on both paths, and f4 has an X box on the yellow path
 
-   :alt: The four different functions from Table [](#tbl-9-1) experimentally implemented by four different configurations. In this cartoon, we have denoted the function changing the bit by an *X*-gate,...
 
-
-   The four different functions from Table [](#tbl-9-1) experimentally implemented by four different configurations. In this cartoon, we have denoted the function changing the bit by an *X*-gate; however, in reality, as described in Eq. ([](#eq-9-2)), two qubits are needed to implement these functions.
+   The four different functions from [](#tbl-9-1) experimentally implemented by four different configurations. In this cartoon, we have denoted the function changing the bit by an *X*-gate; however, in reality, as described in Eq. ([](#eq-9-2)), two qubits are needed to implement these functions.
    ```
 
 
@@ -150,7 +147,7 @@ The Mach-Zehnder interferometer altered to implement the cartoon version of the 
 
    Detector 1 experiences constructive interference, while Detector 2 experiences destructive interference. Therefore, only Detector 1 activates for *f*₁, which is a constant function. Which detector(s) go off for *f*₂, *f*₃, and *f*₄?
 
-After working through the exercises, you should see that thanks to superposition and interference, only one quantum measurement is needed in this cartoon picture of the Deutsch-Jozsa problem. The general algorithm is presented in the next section.
+The cartoon illustrates how superposition and interference can turn a property of both paths into one detector outcome. It does not implement the reversible oracle used in the quantum algorithm, which follows.
 
 ### 9.3.3 Quantum Algorithm
 
@@ -168,8 +165,7 @@ As an example, assume *f*(0) = 1; then $|0\rangle |1\rangle \xrightarrow {f} |0\
 
 ```{figure} ../images/ch-09/490703_1_En_9_Fig6_HTML.png
 :label: fig-9-6
-
-:alt: The quantum circuit for the one qubit Deutsch-Jozsa algorithm. The generic function *f*(*x*) is represented by the box with *f* inside, and the labels below/above the lines indicate how the...
+:alt: Two-wire Deutsch–Jozsa circuit: input |0〉 and ancilla |1〉 each pass through H, then a reversible f oracle acts, followed by H and measurement on the first wire
 
 
 The quantum circuit for the one qubit Deutsch-Jozsa algorithm. The generic function *f*(*x*) is represented by the box with *f* inside, and the labels below/above the lines indicate how the function is implemented.
@@ -214,7 +210,7 @@ The quantum circuit for the one qubit Deutsch-Jozsa algorithm. The generic funct
 
    In the Mach-Zehnder cartoon in Fig. [](#fig-9-5), the interaction between the two qubits was modeled by the photon passing through the blue function boxes.
 
-4. We now throw away the second qubit. We only keep the first qubit and make sure it is normalized correctly. The first qubit is
+4. The second qubit factors from the first and need not be measured. Dropping the overall phase $(-1)^{f(0)}$, the normalized state of the first qubit is
 
    ```{math}
    :label: eq-9-7
@@ -222,7 +218,7 @@ The quantum circuit for the one qubit Deutsch-Jozsa algorithm. The generic funct
    \frac{1}{\sqrt{2}}( |0\rangle + (-1)^{(f(0)+f(1))}|1\rangle).
    ```
 
-   The reason we need the second qubit is to perform the gate operations and collect the like-terms, which ensures that the algorithm works. This second qubit is called an ancilla qubit because it is not measured. This is shown in the circuit in Fig. [](#fig-9-6) as the lack of the measurement operator in the second qubit line.
+   The second qubit enables the reversible oracle and phase kickback. It is called an *ancilla*; the circuit in Fig. [](#fig-9-6) does not measure it.
 
 5. Apply a Hadamard gate to the qubit state in Eq. ([](#eq-9-7)) to produce
 
@@ -236,33 +232,35 @@ The quantum circuit for the one qubit Deutsch-Jozsa algorithm. The generic funct
 
 6. Measure the qubit. If *f*(*x*) is constant, then the state in Eq. ([](#eq-9-8)) reduces to |0〉, while if *f*(*x*) is balanced then the state reduces to |1〉. In the Mach-Zehnder cartoon in Fig. [](#fig-9-5), the detector measured the final state of the photon.
 
-As this algorithm shows, a single measurement of |0〉 or |1〉 shows whether the function is constant or balanced. Impressively, this algorithm straightforwardly extends to functions that take in any number of inputs. This is impressive because only *one single* measurement can tell you whether a function of any size is constant or balanced. For a classical computer to do the same task, it would need to measure each of the inputs, which is exponentially slower.
+For a function promised to be constant or balanced, one quantum oracle query followed by a measurement gives the answer with certainty in the ideal circuit. The $n$-bit Deutsch–Jozsa algorithm retains this one-query property. A deterministic classical algorithm needs $2^{n-1}+1$ queries in the worst case to guarantee the answer, but a randomized classical algorithm can use far fewer queries if a small chance of error is acceptable.[^11] Query complexity also omits the cost of building and running the oracle.
 
 (sec-9-4)=
 ## 9.4 Quantum Computers Today
 
-While the Deutsch-Jozsa problem has no known commercial applications, useful quantum algorithms such as Shor’s factoring algorithm rely upon similar concepts. Quantum algorithms are believed to exist that can speed up machine learning algorithms and efficiently simulate the quantum behavior of molecules. As of 2018, companies such as IBM and Google have built different types of quantum computers that contain up to 72 qubits. To give you an idea of where we need quantum computers to be, factoring a 1024-bit modern encryption key using Shor’s algorithm would require more than 5,000 qubits. In 2019, Google claimed to have performed[^4],[^5] the first quantum computation that a classical computer could not do—a milestone known as “quantum supremacy”. Quantum supremacy means that a quantum computer can solve a problem that a classical computer cannot. However, the solution of the problem may not be of practical use. As such, it is important to note that Google has demonstrated quantum supremacy, not the “quantum usefulness” milestone. Google performed their task on a 53-qubit quantum computer, which took 200 s. They claimed it would take a classical computer 10,000 years to do the same task. However, shortly after, IBM suggested[^6] that an improved classical supercomputing technique could theoretically perform the task in just 2.5 days.
+Deutsch–Jozsa is a teaching example rather than a known commercial application. Shor's factoring algorithm and quantum simulation address different problems with potential practical value. A theoretical algorithmic advantage still needs hardware that can run a sufficiently large, accurate circuit.
 
-Different technological difficulties may be encountered when improving a quantum computer. As we have mentioned, a quantum computer can be built using lasers.[^7] However, there are also random photons outside of the quantum computer in the environment that may accidentally leak into the quantum computer, and these environmental photons can then cause accidental changes to the quantum state. Such accidental changes are called “noise”. To reduce the number of these environmental photons, the quantum computer needs to be cooled down to near absolute zero (around −450° Fahrenheit). However, this is difficult. The more qubits you add, the more you need to keep at this low temperature (a technological challenge). Also, the more qubits you add, the more lasers you need to interact with the qubits. It is technologically difficult to keep lots of qubits in one small space, but also to cause isolated interactions between them using different lasers. Further, the more qubits you add, the more likely it is that the qubits will interact accidentally with the environment, which will then destroy the system’s quantum properties through a process known as decoherence. However, given how classical computers went from being the size of a room in the 1960s to an iPhone within a few decades, governments and industries are investing billions of dollars towards making quantum computers realistic. Ultimately, quantum computers are destined to complement classical computers, not replace them, so don’t expect to have a quantum phone in your pocket anytime soon![^8]
+The 2019 random-circuit sampling experiment is an instructive historical case. Google's team reported that a quantum processor completed a benchmark much faster than their estimate for a classical supercomputer.[^4] IBM researchers proposed a faster classical simulation strategy and disputed the size of that gap.[^6] Such benchmarks depend on the exact task, the hardware, and the best available classical method; a benchmark advantage is not automatically an advantage for a useful application.
+
+Engineering constraints also vary by platform. Superconducting circuits require very low temperatures; trapped ions and photonic systems use different controls and face different sources of error. Noise and unwanted interaction with the environment can reduce the reliability of a calculation. Larger useful computations will need suitable error suppression or correction as well as algorithms whose total resource costs are practical.[^12]
 
 (sec-9-5)=
 ## 9.5 Big Ideas
 
-1. Quantum computers can perform a function operation on all (qu)bits simultaneously - which is called parallelism. This is an advantage over classical computers.
-2. Getting the results from the quantum computation requires measuring the qubits. Too many measurements could ruin the quantum advantage.
-3. The Deutsch-Jozsa Algorithm solves a toy problem on a quantum computer faster than a classical computer can.
+1. A quantum operation acts on each component of a superposition, but measurement cannot reveal all those components.
+2. Algorithms use interference so that measurement gives useful information about a specific problem.
+3. Deutsch–Jozsa solves a promised query problem with one quantum oracle query, compared with exponentially many worst-case queries for an exact deterministic classical algorithm.
 
 (sec-9-6)=
 ## 9.6 Activities
 
-Explore more quantum algorithms from the [IBM quantum textbook](https://qiskit.org/textbook/ch-algorithms/index.html).[^9]
+Explore [IBM Quantum Learning's quantum algorithms course](https://quantum.cloud.ibm.com/learning/en/courses/fundamentals-of-quantum-algorithms).[^9]
 
 (sec-9-7)=
 ## 9.7 Check Your Understanding
 
-1. - (a) How many different classical pieces of information can be represented by eight classical bits (1 byte)?
-   - (b) What about a quantum computer with eight qubits?
-   - (c) What advantage does the quantum computer have over the classical computer?
+1. - (a) How many distinct eight-bit strings can eight classical bits represent?
+   - (b) How many computational basis states do eight qubits have?
+   - (c) Can one measurement of eight qubits reveal all $2^8$ amplitudes? Explain what an algorithm would need to do to obtain a useful answer.
 
 2. This problem refers to the experimental setup in Fig. [](#fig-9-5). Which detector(s) go off for the function
    - (a) *f*₁?
@@ -276,35 +274,30 @@ Explore more quantum algorithms from the [IBM quantum textbook](https://qiskit.o
 
 4. Explain how superposition and interference allow the Deutsch-Jozsa algorithm to beat the classical algorithm.
 
-5. Figure [](#fig-9-7) shows the gate implementation for testing a three-qubit function *f*(*x*). A constant function will always result in |000〉 or |111〉.
+5. Figure [](#fig-9-7) shows a three-qubit circuit with an $f(x)$ box. Trace its gates to determine its output; the circuit diagram alone does not establish that the box represents an arbitrary constant-or-balanced oracle.
 
    ```{figure} ../images/ch-09/490703_1_En_9_Fig7_HTML.png
    :label: fig-9-7
-
-   :alt: The gate implementation for testing the different possible three-qubit functions
+   :alt: Three-wire circuit with H gates before and after a dashed f(x) box; the box contains Z on the top wire and H–CNOT–H on the lower two wires, followed by three measurements
 
 
    The gate implementation for testing the different possible three-qubit functions.
    ```
 
 
-   - (a) How many evaluations would be needed on a classical computer to tell whether this function is constant or balanced?
-   - (b) By running this algorithm on IBM Q, can you determine whether this function is constant or balanced?
-
-[^1]: It is an observation that classical computers double their processing power roughly every 18 months. This is known as [Moore’s law](https://en.wikipedia.org/wiki/Moore%27s_law).
-
-[^2]: The [Titan](https://www.olcf.ornl.gov/olcf-resources/compute-systems/titan/) at Oak Ridge National Laboratory as of 2018.
+   - (a) Starting from $|000\rangle$, what state does the circuit produce immediately before measurement?
+   - (b) What measurement outcome do you expect in an ideal simulator? Check it with a circuit simulator.
 
 [^3]: When the action of the function *f*₁ on a single qubit is represented as a matrix, this matrix is not unitary. Non-unitarity violates the laws of quantum mechanics.
 
 [^4]: [https://www.nature.com/articles/s41586-019-1666-5](https://www.nature.com/articles/s41586-019-1666-5).
 
-[^5]: [https://www.sciencenews.org/article/google-quantum-supremacy-claim-controversy-top-science-stories-2019-yir](https://www.sciencenews.org/article/google-quantum-supremacy-claim-controversy-top-science-stories-2019-yir).
-
 [^6]: [https://arxiv.org/abs/1910.09534](https://arxiv.org/abs/1910.09534).
 
-[^7]: A laser is a source of photons which have the same wavelength and are in phase.
+[^9]: [IBM Quantum Learning, Fundamentals of Quantum Algorithms](https://quantum.cloud.ibm.com/learning/en/courses/fundamentals-of-quantum-algorithms).
 
-[^8]: Theoretical physicists and computational scientists at Fermi National Accelerator Laboratory are working on improving algorithms and the foundations of quantum science in order to expand the range of problems that (near term) quantum devices can solve, e.g., [https://qis.fnal.gov/quantum-computing-for-hep/](https://qis.fnal.gov/quantum-computing-for-hep/).
+[^10]: [IBM Quantum Learning, Grover's algorithm](https://quantum.cloud.ibm.com/learning/en/courses/fundamentals-of-quantum-algorithms/grover-algorithm/introduction).
 
-[^9]: [https://qiskit.org/textbook/ch-algorithms/index.html](https://qiskit.org/textbook/ch-algorithms/index.html).
+[^11]: [IBM Quantum Learning, The Deutsch–Jozsa algorithm](https://quantum.cloud.ibm.com/learning/en/courses/fundamentals-of-quantum-algorithms/quantum-query-algorithms/deutsch-jozsa-algorithm).
+
+[^12]: [IBM Quantum Learning, Quantum Technology](https://quantum.cloud.ibm.com/learning/en/courses/quantum-business-foundations/quantum-technology).

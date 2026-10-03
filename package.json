@@ -13,7 +13,8 @@
     "start": "myst start",
     "build": "myst build --html && node scripts/setup-pwa.mjs",
     "verify": "python3 scripts/verify_book.py",
-    "check": "npm run verify && myst build --html --strict --check-links"
+    "check": "npm run verify && myst build --html --strict --check-links",
+    "build:pdf": "scripts/build-pdf.sh"
   },
   "devDependencies": {
     "mystmd": "1.11.0",

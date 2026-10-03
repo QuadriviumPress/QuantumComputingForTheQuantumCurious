@@ -1,6 +1,7 @@
 tmp/
 work/
 _build/
+exports/
 node_modules/
 __pycache__/
 *.pyc

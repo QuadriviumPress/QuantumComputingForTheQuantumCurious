@@ -10,7 +10,7 @@ superposition, qubits, beam splitters, Stern–Gerlach experiments, quantum
 cryptography, quantum gates, entanglement, quantum teleportation, and
 quantum algorithms — with interactive worksheets.
 
-This is a faithful MyST Markdown conversion of the printed book: all
+This MyST Markdown edition adapts the printed book with documented editorial corrections: all
 equations are live LaTeX, all figures are the original book artwork, and
 the chapter-ending worksheets are included.
 

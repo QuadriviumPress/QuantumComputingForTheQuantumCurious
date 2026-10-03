@@ -23,12 +23,11 @@ In classical computers, the NOT gate takes one input and reverses its value. For
 X(\alpha|0\rangle + \beta|1\rangle) = \beta|0\rangle + \alpha|1\rangle
 ```
 
-To see how this works, you can try out the IBM Q simulator.[^3] Traditionally, all qubits on the IBM Q machine (or any other quantum simulator) start with the incoming qubits in the |0〉 state. To run this simple gate, drag the *X* gate onto any qubit. To find the results, add the measurement operation at the end, as shown in Fig. [](#fig-6-1). Figure [](#fig-6-1) is known as a *quantum circuit*, the quantum analog to classical circuits. A circuit describes how a qubit changes through a computation depending on which gates act on it. The circuit is read from left to right. As an example, in Fig. [](#fig-6-1) the single qubit on the left is initialized to |0〉. An *X* gate is then applied to that specific qubit, and the last symbol on the qubit line denotes that the qubit is measured. The double line underneath is used to illustrate the measurement.
+To see how this works, you can try out the IBM Q simulator.[^3] In the circuits used here, each qubit starts in the |0〉 state. To run this simple gate, drag the *X* gate onto any qubit. To find the results, add the measurement operation at the end, as shown in Fig. [](#fig-6-1). Figure [](#fig-6-1) is known as a *quantum circuit*, the quantum analog to classical circuits. A circuit describes how a qubit changes through a computation depending on which gates act on it. The circuit is read from left to right. As an example, in Fig. [](#fig-6-1) the single qubit on the left is initialized to |0〉. An *X* gate is then applied to that specific qubit, and the last symbol on the qubit line denotes that the qubit is measured. The double line underneath is used to illustrate the measurement.
 
 ```{figure} ../images/ch-06/490703_1_En_6_Fig1_HTML.png
 :label: fig-6-1
-
-:alt: Applying the *X* gate on the IBM Q simulator and measuring the output
+:alt: One zero-state qubit passes through an X gate, then a measurement writes its result to a classical bit
 
 
 Applying the *X* gate on the IBM Q simulator and measuring the output
@@ -39,8 +38,7 @@ After running the quantum circuit and opening the results, you should see a hist
 
 ```{figure} ../images/ch-06/490703_1_En_6_Fig2_HTML.png
 :label: fig-6-2
-
-:alt: Histogram showing that the qubit is measured in the |1 state with a probability of 1. Reprint Courtesy of International Business Machines Corporation. ⒸInternational Business Machines Corporation
+:alt: Histogram after an X gate on a zero-state qubit; all measured outcomes are one
 
 
 Histogram showing that the qubit is measured in the |1〉 state with a probability of 1. Reprint Courtesy of International Business Machines Corporation. ⒸInternational Business Machines Corporation
@@ -55,7 +53,7 @@ Mathematically, the quantum NOT gate is represented as a matrix *X* which acts o
 X= \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}.
 ```
 
-It is worth noting that any computer will have hardware errors. In a classical computer, this could be an electrical short of the motherboard, or degradation of the hard drive which corrupts the stored classical bits. A real quantum computer will also have hardware errors. The quantum state of a qubit can change accidentally because of these hardware errors. Such errors may arise from the lack of full control of the interference between electromagnetic fields, variations in temperature, or energy dissipation. The accidental and incorrect change of a qubit state gives rise to the wrong answer which is called “noise”.[^4] As quantum computers only measure the state of a qubit, they cannot easily tell if the measurement is correct or incorrect. When we humans interpret these results, noise can cause confusion as to which answer is actually correct. Minimizing noise error is the greatest obstacle to building quantum computers.[^5] For example, noise will cause the histogram in Fig. [](#fig-6-2) to not have the perfect 100% outcome. Instead, noise will cause the qubit to be in the |0〉 state incorrectly some of the time, and the measurement histogram will incorrectly be *x*% in the |0〉 state and (100 − *x*)% in the |1〉 state. If the noise is large, then *x* = 50% and the measurement will be completely random. It should be understood that noise is an effect that occurs in both classical and quantum computers but because quantum computing technology is in its infancy, the noise is not as well under control.
+It is worth noting that any computer will have hardware errors. In a classical computer, this could be an electrical short of the motherboard, or degradation of the hard drive which corrupts the stored classical bits. A real quantum computer will also have hardware errors. The quantum state of a qubit can change accidentally because of these hardware errors. Such errors may arise from the lack of full control of the interference between electromagnetic fields, variations in temperature, or energy dissipation. The accidental and incorrect change of a qubit state gives rise to the wrong answer which is called “noise”.[^4] As quantum computers only measure the state of a qubit, they cannot easily tell if the measurement is correct or incorrect. When we humans interpret these results, noise can cause confusion as to which answer is actually correct. Reducing and correcting noise is a major challenge in building useful quantum computers.[^5] For example, noise will cause the histogram in Fig. [](#fig-6-2) to not have the perfect 100% outcome. Instead, noise will cause the qubit to be in the |0〉 state incorrectly some of the time, and the measurement histogram will incorrectly be *x*% in the |0〉 state and (100 − *x*)% in the |1〉 state. If the noise is large, then *x* = 50% and the measurement will be completely random. It should be understood that noise is an effect that occurs in both classical and quantum computers but because quantum computing technology is in its infancy, the noise is not as well under control.
 
 (sec-6-3)=
 ## 6.3 Hadamard Gate
@@ -64,8 +62,7 @@ The Hadamard gate is very important in quantum computing. If the qubit starts in
 
 ```{figure} ../images/ch-06/490703_1_En_6_Fig3_HTML.png
 :label: fig-6-3
-
-:alt: Applying a Hadamard gate and measuring on the IBM Q machine
+:alt: One zero-state qubit passes through a Hadamard gate, then a measurement writes its result to a classical bit
 
 
 Applying a Hadamard gate and measuring on the IBM Q machine
@@ -76,15 +73,14 @@ The result of running the circuit 1,024 times is a histogram shown in Fig. [](#f
 
 ```{figure} ../images/ch-06/490703_1_En_6_Fig4_HTML.png
 :label: fig-6-4
-
-:alt: Measurement histogram after running the Hadamard gate circuit in Fig. [](#fig-6-3) 1024 times. Reprint courtesy of International Business Machines Corporation, ⒸInternational Business Machines...
+:alt: Histogram of 1024 Hadamard-gate trials: approximately 49.3 percent zero outcomes and 50.7 percent one outcomes
 
 
 Measurement histogram after running the Hadamard gate circuit in Fig. [](#fig-6-3) 1024 times. Reprint courtesy of International Business Machines Corporation, ⒸInternational Business Machines Corporation
 ```
 
 
-Recall that measurement collapses the superposition. Only one classical state can be observed, and all of the other quantum information is lost. Measurement collapse is the reason why a qubit’s state cannot be duplicated, a result known as the no-cloning theorem of quantum computing. Once a superposition state is measured, it fundamentally changes into one of the basis states, and hence cannot be duplicated. Still, it is not known how or whether measurement collapse happens.[^6]
+Recall that a measurement in the computational basis produces one classical outcome and generally changes the qubit’s state. The no-cloning theorem is a separate result: no universal quantum operation can perfectly copy every unknown input state while preserving the original. A single measurement cannot reveal all the information needed to prepare an unknown state again.[^6]
 
 **Question 1** Create a qubit in the |1〉 state and pass it through a Hadamard gate. From the measurement histogram, can you tell whether the qubit started in a |0〉 or |1〉 initial state?
 
@@ -94,8 +90,7 @@ The measurement histogram should look identical whether |0〉 or |1〉 was the i
 
 ```{figure} ../images/ch-06/490703_1_En_6_Fig5_HTML.png
 :label: fig-6-5
-
-:alt: Applying two Hadamard gates to the |0 state or |1 state
+:alt: Two Hadamard gates in sequence return a zero-state input to zero and a one-state input to one
 
 
 Applying two Hadamard gates to the |0〉 state or |1〉 state
@@ -129,7 +124,7 @@ If the initial state is |1〉, the Hadamard gate will create the superposition $
 H|1\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle).
 ```
 
-In the Stern–Gerlach experiment, you learned that the |0〉 and |1〉 states make up the *z*-basis and are associated with spin up and spin down. The |+〉 and |−〉 states comprise the *x*-basis and are associated with spin right and spin left. While the Stern–Gerlach could be rotated to measure at any angle, a quantum computer is physically built to only measure in the *z*-basis. Therefore, the spin right $1/\sqrt{2}(|0\rangle + |1\rangle)$ and spin left $1/\sqrt{2}(|0\rangle - |1\rangle)$ look the same when measured by a quantum computer. However, the two states have hidden information that can be recovered by using a second Hadamard gate to change back into the *z*-basis.
+In the Stern–Gerlach experiment, you learned that the |0〉 and |1〉 states make up the *z*-basis and are associated with spin up and spin down. The |+〉 and |−〉 states comprise the *x*-basis and are associated with spin right and spin left. While a Stern–Gerlach apparatus can be rotated to measure along another axis, the circuit examples here read out in the computational, or *z*, basis. Therefore, the spin right $1/\sqrt{2}(|0\rangle + |1\rangle)$ and spin left $1/\sqrt{2}(|0\rangle - |1\rangle)$ look the same when measured by a quantum computer. However, the two states have hidden information that can be recovered by using a second Hadamard gate to change back into the *z*-basis.
 
 ### 6.4.1 Examples
 
@@ -167,7 +162,7 @@ In the Stern–Gerlach experiment, you learned that the |0〉 and |1〉 states m
    HH|0\rangle =\frac{1}{2} \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}.
    ```
 
-In fact, all quantum gates are reversible as a consequence of the unitary matrix condition. Recall that the gates must be unitary so that the probabilities always add up to 1. Multiplying any unitary matrix by its conjugate transpose will return the identity matrix, thereby reversing the gate to recover the original state by *UU*† = *U*†*U* = 1. The Hadamard matrix is self-unitary, i.e., it is its own conjugate transpose, *U* = *U*†.
+In fact, all quantum gates are reversible as a consequence of the unitary matrix condition. Recall that the gates must be unitary so that the probabilities always add up to 1. Multiplying any unitary matrix by its conjugate transpose will return the identity matrix, thereby reversing the gate to recover the original state by *UU*† = *U*†*U* = 1. The Hadamard matrix is also its own inverse and conjugate transpose: $H^2 = I$ and $H = H^{\dagger}$.
 
 (sec-6-5)=
 ## 6.5 *Z* Gate
@@ -188,12 +183,11 @@ The *Z* gate leaves a |0〉 state unchanged but flips the sign of the |1〉 stat
 Z(\alpha|0\rangle + \beta|1\rangle) = \alpha|0\rangle - \beta|1\rangle.
 ```
 
-This is equivalent to changing the qubit from a |+〉 state to a |−〉 state. The effects of the *X*, *H*, and *Z* gates are summarized in Fig. [](#fig-6-6).
+In particular, applying *Z* to a |+〉 state produces a |−〉 state. The effects of the *X*, *H*, and *Z* gates are summarized in Fig. [](#fig-6-6).
 
 ```{figure} ../images/ch-06/490703_1_En_6_Fig6_HTML.png
 :label: fig-6-6
-
-:alt: The *X*, *H*, and *Z* gates change the qubit’s state in the *z*- and *x*-basis and are related according to this diagram
+:alt: X exchanges the zero and one states; Hadamard maps them to plus and minus states; Z exchanges plus and minus
 
 
 The *X*, *H*, and *Z* gates change the qubit’s state in the *z*- and *x*-basis and are related according to this diagram
@@ -237,8 +231,7 @@ Exploring gates on the IBM Quantum Computer [](#sec-10-4).
 
    ```{figure} ../images/ch-06/490703_1_En_6_Fig7_HTML.png
    :label: fig-6-7
-
-   :alt: Five quantum circuits for Problem 8
+   :alt: Five candidate circuits combine X and Hadamard gates, including X then H, H then X, two X gates, and H-X-H
 
 
    Five quantum circuits for Problem 8
@@ -256,8 +249,7 @@ Exploring gates on the IBM Quantum Computer [](#sec-10-4).
 
     ```{figure} ../images/ch-06/490703_1_En_6_Fig8_HTML.png
     :label: fig-6-8
-
-    :alt: Circuit diagram for Problem 12
+    :alt: A zero-state qubit passes through X, Hadamard, Z, and Hadamard gates in sequence before measurement
 
 
     Circuit diagram for Problem 12
@@ -274,6 +266,6 @@ Exploring gates on the IBM Quantum Computer [](#sec-10-4).
 
 [^4]: Background noise is an event that causes unwanted or incorrect effects on a signal.
 
-[^5]: Noise can also occur in classical computers. Here, it can be because a wire in the computer which holds the 0- or 1-bit breaks and gives the wrong bit value. However, since classical computation has no probability associated with it, a single classical computation can be rerun twice and should give the exact same result. In practice, your computer reruns the same code many times to spot if there have been any errors and chooses the result which occurs most frequently. In this way you do not notice the hardware noise as easily.
+[^5]: Classical hardware also suffers errors. Memory checks, error-correcting codes, and other engineering techniques help detect or correct them; merely rerunning an arbitrary program does not guarantee a correct result.
 
-[^6]: [https://en.wikipedia.org/wiki/Measurement_problem](https://en.wikipedia.org/wiki/Measurement_problem).
+[^6]: See [IBM Quantum's explanation of the no-cloning theorem](https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/quantum-circuits/limitations-on-quantum-information).

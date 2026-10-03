@@ -17,8 +17,7 @@ doi: 10.1007/978-3-030-61601-4_10
 
 ```{figure} ../images/ch-10/490703_1_En_10_Fig1_HTML.png
 :label: fig-10-1
-
-:alt: Figure reproduced from the [QuVis website](https://www.st-andrews.ac.uk/physics/quvis/), licensed under Creative Commons CC-BY-NC-SA
+:alt: QuVis entanglement simulator with a particle-pair source between Alice's and Bob's vertically aligned Stern–Gerlach apparatuses; z orientation selected
 
 
 Figure reproduced from the [QuVis website](https://www.st-andrews.ac.uk/physics/quvis/), licensed under Creative Commons CC-BY-NC-SA.
@@ -35,8 +34,7 @@ Now rotate both SGAs along the x-axis (Fig. [](#fig-10-2)).
 
 ```{figure} ../images/ch-10/490703_1_En_10_Fig2_HTML.png
 :label: fig-10-2
-
-:alt: Figure reproduced from the [QuVis website](https://www.st-andrews.ac.uk/physics/quvis/), licensed under Creative Commons CC-BY-NC-SA
+:alt: QuVis entanglement simulator with Alice's and Bob's Stern–Gerlach apparatuses rotated horizontally; x orientation selected
 
 
 Figure reproduced from the [QuVis website](https://www.st-andrews.ac.uk/physics/quvis/), licensed under Creative Commons CC-BY-NC-SA.
@@ -61,7 +59,6 @@ For students who have learned about polarization, the creation of superposition 
 
 ```{figure} ../images/ch-10/490703_1_En_10_Fig3_HTML.png
 :label: fig-10-3
-
 :alt: Unpolarized light is sent through a series of polarizing filters
 
 
@@ -72,7 +69,7 @@ Unpolarized light is sent through a series of polarizing filters.
 (sec-10-3)=
 ## 10.3 Quantum Tic-Tac-Toe
 
-Quantum Tic-Tac-Toe was developed by Allan Goff in 2004 as a metaphor to teach quantum concepts such as superposition, entanglement, and measurement collapse. It has been found to be a helpful strategy in teaching quantum mechanics to undergraduate students at Purdue, especially for students who struggle with grasping the concepts.[^2]
+Quantum Tic-Tac-Toe was developed by Allan Goff in 2004 as a metaphor for superposition, entanglement, and measurement. It has been used to teach quantum mechanics to undergraduate students.[^2] The game uses classical choices and markers; its rules illustrate ideas but do not reproduce quantum probabilities or Bell correlations.
 
 Quantum Tic-Tac-Toe resembles the classical Tic-Tac-Toe game in its setup and objective of completing three in a row. However, the game uses characteristics of quantum systems, so instead of using one marker *X* or *O*, the players use pairs of *X*s and *O*s, which are traditionally called “spooky,” after Einstein’s reference to entanglement as “spooky action at a distance”.[^3] Using indices for each marker’s move is important when determining the winner of the game. Additionally, we use a color code for each player and connect the spooky markers to help students better visualize the game process. We also number the squares for future reference.
 
@@ -82,7 +79,6 @@ Quantum Tic-Tac-Toe resembles the classical Tic-Tac-Toe game in its setup and ob
 
    ```{figure} ../images/ch-10/490703_1_En_10_Fig4_HTML.png
    :label: fig-10-4
-
    :alt: The Quantum Tic-Tac-Toe layout with numbered squares (left): one player’s move with spooky markers *x*~1~ (right)
 
 
@@ -94,7 +90,6 @@ Quantum Tic-Tac-Toe resembles the classical Tic-Tac-Toe game in its setup and ob
 
    ```{figure} ../images/ch-10/490703_1_En_10_Fig5_HTML.png
    :label: fig-10-5
-
    :alt: Example of the second player’s move
 
 
@@ -106,7 +101,6 @@ Quantum Tic-Tac-Toe resembles the classical Tic-Tac-Toe game in its setup and ob
 
    ```{figure} ../images/ch-10/490703_1_En_10_Fig6_HTML.png
    :label: fig-10-6
-
    :alt: The cyclic loop is created by the player X. Using lines between the spooky markers helps in identifying the loop
 
 
@@ -118,7 +112,6 @@ Quantum Tic-Tac-Toe resembles the classical Tic-Tac-Toe game in its setup and ob
 
    ```{figure} ../images/ch-10/490703_1_En_10_Fig7_HTML.png
    :label: fig-10-7
-
    :alt: The two collapse outcomes due to player O’s decision
 
 
@@ -126,12 +119,11 @@ Quantum Tic-Tac-Toe resembles the classical Tic-Tac-Toe game in its setup and ob
    ```
 
 
-5. The next player can place his or her spooky markers in any two squares except the ones that are occupied by the collapsed markers. The game goes on until another cycle is created and the players are forced to collapse the state.
+5. The next player can place their spooky markers in any two squares except those occupied by collapsed markers. The game continues until another cycle is created and the players collapse the markers.
 6. **Winning the game**. In some cases both players will create three in a row after collapsing their spooky markers. In this case, the player with the smallest sum of indexes wins. For example, in Fig. [](#fig-10-8) player X wins because they have the smaller sum.
 
    ```{figure} ../images/ch-10/490703_1_En_10_Fig8_HTML.png
    :label: fig-10-8
-
    :alt: Player X wins, because the sum of their indexes is 1 + 2 + 3 = 6. Player O got three in a row, but the sum of their indexes is 2 + 1 + 4 = 7
 
 
@@ -143,7 +135,6 @@ Quantum Tic-Tac-Toe resembles the classical Tic-Tac-Toe game in its setup and ob
 
 ```{figure} ../images/ch-10/490703_1_En_10_Fig9_HTML.png
 :label: fig-10-9
-
 :alt: A player cannot put both markers in the same square
 
 
@@ -163,40 +154,38 @@ How are the game rules and principles connected to the real applications of quan
 
 **Superposition** In classical physics all objects have defined states. However, quantum systems can exist in a superposition of several classical states at the same time. The example could be an electron with a spin that is in a superposition of up and down, or a photon in a superposition of vertical and horizontal polarization. QTTT spooky markers exist in two separate locations on the game board, representing their state as a superposition state of two classical TTT markers.
 
-**Measurement** When the state of a quantum system is measured, the quantum state collapses and only one classical state is observed with some probability. In QTTT, the rule of creating the loop forces players to collapse their markers (measure their quantum state). In this case the player decides how to collapse the markers, which corresponds to the scientist choosing the way of measuring a quantum system, such as axis orientation. The rule of forcing the measurement when the loop is created does not have an exact corresponding physical meaning. Quantum systems can exist in a superposition state for an extended time, and the measurement is not forced, but chosen by the observer.
+**Measurement** A measurement yields an outcome with a probability determined by the quantum state and measurement basis. In QTTT, a loop triggers a marker collapse and a player chooses the outcome. Real quantum outcomes cannot generally be chosen by the experimenter. The forced collapse when a loop forms is also a game rule without a direct physical counterpart.
 
-**Entanglement** Entanglement is the quantum phenomenon of creating two or more particles, whose states cannot be described separately, but have some correlation even when they are separated by a significant distance. When the state of one of the entangled particles is measured, the state of the other particle can be known even without measurement. Einstein called it “spooky action at a distance.” When the players collapse their states after creating a loop in QTTT, they know for sure which state each marker would collapse into.
+**Entanglement** An entangled pure state cannot be factored into states for its individual parts. QTTT markers linked in a loop provide a visual analogy for joint outcomes. Their predetermined collapse choices are classical game mechanics, so the loop itself is not evidence of quantum entanglement.
 
 (sec-10-4)=
 ## 10.4 Schrödinger’s Worm Using Five Qubits
 
 **Objectives** Design, build, and test quantum circuits that model systems in superposition and entanglement.
 
-**Setup** Open the [IBM Q simulator](https://quantum-computing.ibm.com)[^5] and start a new circuit in the Circuit Composer (Fig. [](#fig-10-10)).
+**Setup** Open [IBM Quantum Composer](https://quantum.cloud.ibm.com/composer)[^5] and create a circuit with five qubits initialized to $|0\rangle$. Figures [](#fig-10-10) and [](#fig-10-11) show an older interface; use the current Composer controls for the same operations.
 
 ```{figure} ../images/ch-10/490703_1_En_10_Fig10_HTML.png
 :label: fig-10-10
-
-:alt: A new experiment on the IBM Q Circuit Composer. Reprint courtesy of International Business Machines Corporation, ⒸInternational Business Machines Corporation
+:alt: Older IBM Circuit Composer screen with five empty qubit wires q[0] through q[4], a gate palette, and a Run button
 
 
 A new experiment on the IBM Q Circuit Composer. Reprint courtesy of International Business Machines Corporation, ⒸInternational Business Machines Corporation.
 ```
 
 
-The default is 5 qubits initialized to the |0⟩ state. Gates can be applied by dragging and dropping them onto the appropriate qubit(s). Don’t forget to add the measurement gate at the end to see the results. When you are satisfied with your circuit, save the experiment and click Run (Fig. [](#fig-10-11)).
+Drag gates onto the appropriate qubit wires. Add measurement operations if you want sampled bit-string outcomes. Inspect the statevector visualization or run the circuit to compare ideal predictions with measured results (Fig. [](#fig-10-11)).
 
 ```{figure} ../images/ch-10/490703_1_En_10_Fig11_HTML.png
 :label: fig-10-11
-
-:alt: Options for running the IBM Q experiment. Reprint courtesy of International Business Machines Corporation, ⒸInternational Business Machines Corporation
+:alt: Older IBM run dialog with a simulator backend selector, a 1024-shot setting, and a Run button
 
 
 Options for running the IBM Q experiment. Reprint courtesy of International Business Machines Corporation, ⒸInternational Business Machines Corporation.
 ```
 
 
-By default, the circuit will be evaluated 1024 times using the simulator backend. You may also run the circuit on a real quantum computer, subject to a waiting period. Increasing the number of shots will increase the statistical accuracy of the results at the expense of run-time. After you have run the circuit, the results will appear in a link at the bottom of the page.
+When sampling outcomes, choose a simulation or available hardware backend and a shot count supported by the interface. More shots reduce sampling uncertainty, though device noise can still affect hardware results. Composer's controls and access requirements may change; consult its current documentation.[^5]
 
 **Part I: Superposition** The worm is alive when all five squares are black and dead when only four are black. Use a 0 to represent a white square and 1 to represent a black square (Fig. [](#fig-10-12)).
 
@@ -209,8 +198,7 @@ By default, the circuit will be evaluated 1024 times using the simulator backend
 
 ```{figure} ../images/ch-10/490703_1_En_10_Fig12_HTML.png
 :label: fig-10-12
-
-:alt: Dead or alive worms
+:alt: Five-square worm: alive state has five black squares; dead state has four black squares and a white square on the right
 
 
 Dead or alive worms.
@@ -226,8 +214,7 @@ Dead or alive worms.
 
 ```{figure} ../images/ch-10/490703_1_En_10_Fig13_HTML.png
 :label: fig-10-13
-
-:alt: Very dead or alive worms
+:alt: Five-square worm: alive state has five black squares; very dead state has three black squares and two white squares on the right
 
 
 Very dead or alive worms.
@@ -236,8 +223,7 @@ Very dead or alive worms.
 
 **Further Resources**
 
-- The [Qiskit webpage](https://qiskit.org/)[^6] has resources for YouTube videos and other educational links.
-- IBM quantum offers a (virtual) [summer school](https://qiskit.org/events/summer-school/)[^7] with minimal prerequisites required.
+- [IBM Quantum Learning](https://quantum.cloud.ibm.com/learning)[^6] offers tutorials and courses that complement the circuit exercise.
 
 (sec-10-5)=
 ## 10.5 Superposition vs. Mixed States Lab
@@ -258,8 +244,7 @@ Very dead or alive worms.
 
    ```{figure} ../images/ch-10/490703_1_En_10_Fig14_HTML.png
    :label: fig-10-14
-
-   :alt: Figure reproduced from the [QuVis website](https://www.st-andrews.ac.uk/physics/quvis/), licensed under Creative Commons CC-BY-NC-SA
+   :alt: QuVis simulator showing a Stern–Gerlach apparatus, x and z orientation controls, and inputs for a 50/50 mixture or a coherent superposition
 
 
    Figure reproduced from the [QuVis website](https://www.st-andrews.ac.uk/physics/quvis/), licensed under Creative Commons CC-BY-NC-SA.
@@ -277,13 +262,12 @@ Very dead or alive worms.
 
 ### Objectives
 
-- Use the [PHET Stern-Gerlach Simulator](https://phet.colorado.edu/sims/stern-gerlach/stern-gerlach_en.html)[^9] to see how changing the orientation of the Stern-Gerlach Apparatus (SGA) affects the spin measurement.
+- Use the [PhET Stern–Gerlach simulation](https://phet.colorado.edu/en/simulations/stern-gerlach)[^9] to see how changing the orientation of the Stern–Gerlach apparatus (SGA) affects spin measurement.
 - Perform calculations to write the spin in a different measurement basis (Fig. [](#fig-10-15)).
 
   ```{figure} ../images/ch-10/490703_1_En_10_Fig15_HTML.png
   :label: fig-10-15
-
-  :alt: Figure reproduced from the [PHET Stern-Gerlach Simulator website](https://phet.colorado.edu/sims/stern-gerlach/stern-gerlachen.html), licensed under Creative Commons CC-BY
+  :alt: PhET Stern–Gerlach interface with input spin and magnet-angle controls, plus a detector showing the proportions of two output paths
 
 
   Figure reproduced from the [PHET Stern-Gerlach Simulator website](https://phet.colorado.edu/sims/stern-gerlach/stern-gerlach_en.html), licensed under Creative Commons CC-BY.
@@ -292,23 +276,24 @@ Very dead or alive worms.
 
 | Angle of SGA (*θ*~SGA~) | Probability of going through | Probability of being blocked |
 | --- | --- | --- |
-| 0° |  |  |
-| 15° |  |  |
-| 30° |  |  |
-| 45° |  |  |
-| 60° |  |  |
-| 75° |  |  |
-| 90° |  |  |
-| 105° |  |  |
-| 120° |  |  |
-| 135° |  |  |
-| 150° |  |  |
-| 165° |  |  |
-| 180° |  |  |
+| 0° | \_\_\_\_ | \_\_\_\_ |
+| 15° | \_\_\_\_ | \_\_\_\_ |
+| 30° | \_\_\_\_ | \_\_\_\_ |
+| 45° | \_\_\_\_ | \_\_\_\_ |
+| 60° | \_\_\_\_ | \_\_\_\_ |
+| 75° | \_\_\_\_ | \_\_\_\_ |
+| 90° | \_\_\_\_ | \_\_\_\_ |
+| 105° | \_\_\_\_ | \_\_\_\_ |
+| 120° | \_\_\_\_ | \_\_\_\_ |
+| 135° | \_\_\_\_ | \_\_\_\_ |
+| 150° | \_\_\_\_ | \_\_\_\_ |
+| 165° | \_\_\_\_ | \_\_\_\_ |
+| 180° | \_\_\_\_ | \_\_\_\_ |
 
 ### Questions
 
 1. Send spin up electrons through a single SGA and record the measurement probabilities for different SGA angles (see above table).
+   Use the angle between the prepared spin direction and the analyzer axis. Compare the data with $P(\text{up along analyzer})=\cos^2(\theta/2)$.
 2. Generate a scatter plot of the data.
 3. What function describes the shape of the graph?
 4. Write the state of the spin up electron as a superposition for an arbitrary SGA angle (*θ*~SGA~). In other words, find *α* and *β* in |electron⟩ = *α*|goes through⟩ + *β*|blocked⟩. The diagram below may help, but note that *θ* ≠ *θ*~SGA~.
@@ -325,17 +310,18 @@ Very dead or alive worms.
 
 ### 10.7.1 One-Time Pad: Alice
 
-Before parting ways, you and Bob agree on a key. Using a coin with heads = 0 and tails = 1, randomly generate a key of the same length as the message. Make sure that you and Bob have the same key.
+Before parting ways, you and Bob privately share a truly random key with one bit per message bit. Use a fair coin (heads = 0, tails = 1) to generate it. Keep the key secret and use it for this message only.
 
 - Shared Key:
 
   ![Shared one-time pad key generated by coin flips](../images/ch-10/490703_1_En_10_Figxb_HTML.png)
 
 - **Encoding**:
-  1. Choose a secret letter to send to Bob in binary using Table [](#tbl-10-1). Message:
+  1. Choose a secret letter to send to Bob in binary using [](#tbl-10-1). Message:
 
-     (tbl-10-1)=
-     **Table 10.1** One-time pad (Alice)
+     :::{table} One-time pad (Alice)
+     :label: tbl-10-1
+     :enumerator: 10.1
 
      | Character | Binary code |
      | --- | --- |
@@ -365,10 +351,11 @@ Before parting ways, you and Bob agree on a key. Using a coin with heads = 0 and
      | *X* | 01011000 |
      | *Y* | 01011001 |
      | *Z* | 01011010 |
+     :::
 
      ![Secret message encoded in binary for the one-time pad worksheet](../images/ch-10/490703_1_En_10_Figxc_HTML.png)
 
-  2. Add the key to your message, bit by bit, to encode the message. In binary, 0 + 0 = 0, 0 + 1 = 1 + 0 = 1, and 1 + 1 = 0. For example, if the key = 0110 and the message = 1101, then the cipher text = 1011, as 0110 + 1101 = 1011.
+  2. Combine each message bit with the matching key bit using XOR (addition modulo 2): 0 ⊕ 0 = 0, 0 ⊕ 1 = 1 ⊕ 0 = 1, and 1 ⊕ 1 = 0. For example, 0110 ⊕ 1101 = 1011.
 
      - Cipher Text:
 
@@ -378,13 +365,13 @@ Before parting ways, you and Bob agree on a key. Using a coin with heads = 0 and
 - **Decoding**
   1. Write down the cipher received from Bob.
 
-     | Cipher from Bob |  |  |  |  |  |  |  |  |
+     | Cipher from Bob | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ |
      | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-     | Shared Key |  |  |  |  |  |  |  |  |
+     | Shared Key | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ |
 
   2. Add the key to Bob’s message, bit by bit, to decode the message.
 
-     | Decoded message |  |  |  |  |  |  |  |  |
+     | Decoded message | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ |
      | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
   3. What was the message?
@@ -396,18 +383,19 @@ Before parting ways, you and Bob agree on a key. Using a coin with heads = 0 and
 - **Questions**
   1. Why does adding the key to the cipher recover the original message?
   2. Why is the one-time pad theoretically unbreakable?
-  3. What is the practical security flaw in the one-time pad?
+  3. What practical difficulties arise from generating, sharing, protecting, and never reusing a truly random key as long as the message?
 
-### 10.7.2 One-Time Pad (Bob)
+### 10.7.2 One-Time Pad: Bob
 
-Before parting ways, you and Alice agree on a key. Using a coin with heads = 0 and tails = 1, randomly generate a key of the same length as the message. Make sure that you and Alice have the same key.
+Before parting ways, you and Alice privately share a truly random key with one bit per message bit. Use a fair coin (heads = 0, tails = 1) to generate it. Keep the key secret and use it for this message only.
 
 - Shared Key:
 - **Encoding**:
-  1. Choose a secret letter to send to Alice in binary using Table [](#tbl-10-2). Message:
+  1. Choose a secret letter to send to Alice in binary using [](#tbl-10-2). Message:
 
-     (tbl-10-2)=
-     **Table 10.2** One-time pad (Bob)
+     :::{table} One-time pad (Bob)
+     :label: tbl-10-2
+     :enumerator: 10.2
 
      | Character | Binary code |
      | --- | --- |
@@ -437,8 +425,9 @@ Before parting ways, you and Alice agree on a key. Using a coin with heads = 0 a
      | *X* | 01011000 |
      | *Y* | 01011001 |
      | *Z* | 01011010 |
+     :::
 
-  2. Add the key to your message, bit by bit, to encode the message. In binary, 0 + 0 = 0, 0 + 1 = 1 + 0 = 1, and 1 + 1 = 0. For example, if the key = 0110 and the message = 1101, then the cipher text = 1011. 0110 + 1101 = 1011.
+  2. Combine each message bit with the matching key bit using XOR (addition modulo 2): 0 ⊕ 0 = 0, 0 ⊕ 1 = 1 ⊕ 0 = 1, and 1 ⊕ 1 = 0. For example, 0110 ⊕ 1101 = 1011.
 
      - Cipher Text:
 
@@ -446,13 +435,13 @@ Before parting ways, you and Alice agree on a key. Using a coin with heads = 0 a
 - **Decoding**
   1. Write down the cipher received from Alice.
 
-     | Cipher from Alice |  |  |  |  |  |  |  |  |
+     | Cipher from Alice | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ |
      | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-     | Shared Key |  |  |  |  |  |  |  |  |
+     | Shared Key | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ |
 
   2. Add the key to Alice’s message, bit by bit, to decode the message.
 
-     | Decoded message |  |  |  |  |  |  |  |  |
+     | Decoded message | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ |
      | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
   3. What was the message?
@@ -464,10 +453,12 @@ Before parting ways, you and Alice agree on a key. Using a coin with heads = 0 a
 - **Questions**
   1. Why does adding the key to the cipher recover the original message?
   2. Why is the one-time pad theoretically unbreakable?
-  3. What is the practical security flaw in the one-time pad?
+  3. What practical difficulties arise from generating, sharing, protecting, and never reusing a truly random key as long as the message?
 
 (sec-10-8)=
 ## 10.8 BB84 Quantum Key Distribution
+
+This card activity models an idealized intercept-and-resend attack. A mismatch in a sample of the sifted bits can indicate interference or noise; matching a small sample does not prove that no one listened. A real BB84 protocol also needs an authenticated classical channel, error estimation, error correction, and privacy amplification. Alice and Bob should reveal and discard a sample of sifted bits for their comparison rather than exposing the entire key. See [IBM Quantum Learning's BB84 lesson](https://quantum.cloud.ibm.com/learning/en/modules/computer-science/quantum-key-distribution) for the full protocol.
 
 ### 10.8.1 BB84 Quantum Key Distribution: Alice
 
@@ -483,25 +474,25 @@ Before parting ways, you and Alice agree on a key. Using a coin with heads = 0 a
   4. Once you have filled up the chart, tell Bob the basis used for each bit. If Bob tells you to “discard” the bit, cross it out on your chart.
   5. Check to see that you and Bob end up with the same sifted key.
 
-  | Basis: *x* or *z* |  |  |  |  |  |  |  |  |  |
+  | Basis: *x* or *z* | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ |
   | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-  | Bit value: 0 or 1 |  |  |  |  |  |  |  |  |  |
+  | Bit value: 0 or 1 | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ |
 
 - SIFTED KEY:
 - **With Eavesdropper**
   1. Repeat the procedure, but instead of passing the spin card directly to Bob, pass it through Eve first.
-  2. Compare the sifted key bits one at a time. How can you tell if Eve intercepted the message?
+  2. Reveal and discard a sample of the sifted bits. What mismatch rate do you observe? Can a small sample prove that Eve was absent?
 - SIFTED KEY:
 
-  | Basis: *x* or *z* |  |  |  |  |  |  |  |  |  |
+  | Basis: *x* or *z* | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ |
   | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-  | Bit value: 0 or 1 |  |  |  |  |  |  |  |  |  |
+  | Bit value: 0 or 1 | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ |
 
 ### 10.8.2 BB84 Quantum Key Distribution: Bob
 
 - **No Eavesdropper**
   1. Randomly choose between the *x*- or *z*-basis.
-  2. Receive the spin card from Alice and flip it over.
+  2. Commit to your measurement basis before looking at Alice's card. Receive the card and flip it over to simulate the measurement.
      - If your basis is the same as the card’s, record the bit value.
      - If your basis is different, the output of your Stern-Gerlach apparatus will be random. Randomly pick 0 or 1.
 
@@ -512,19 +503,19 @@ Before parting ways, you and Alice agree on a key. Using a coin with heads = 0 a
   3. Once you have filled up the chart, Alice will tell you the basis used for each bit. If you measured in a different basis, tell Alice to “discard” the bit and cross it out on your chart.
   4. Check to see that you and Alice end up with the same sifted key.
 
-  | Basis: *x* or *z* |  |  |  |  |  |  |  |  |  |
+  | Basis: *x* or *z* | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ |
   | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-  | Bit value: 0 or 1 |  |  |  |  |  |  |  |  |  |
+  | Bit value: 0 or 1 | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ |
 
 - SIFTED KEY:
 - **With Eavesdropper**
   1. Repeat the procedure, but instead of getting the spin card directly from Alice, get it from Eve after it passes through her.
-  2. Compare the sifted key bits one at a time. How can you tell if Eve intercepted the message?
+  2. Reveal and discard a sample of the sifted bits. What mismatch rate do you observe? Can a small sample prove that Eve was absent?
 - SIFTED KEY:
 
-  | Basis: *x* or *z* |  |  |  |  |  |  |  |  |  |
+  | Basis: *x* or *z* | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ |
   | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-  | Bit value: 0 or 1 |  |  |  |  |  |  |  |  |  |
+  | Bit value: 0 or 1 | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ |
 
 ### 10.8.3 BB84 Quantum Key Distribution: Eve
 
@@ -537,9 +528,9 @@ Before parting ways, you and Alice agree on a key. Using a coin with heads = 0 a
   4. Compare your sifted key to Alice and Bob’s key. Was your eavesdropping successful?
 - SIFTED KEY:
 
-  | Basis: *x* or *z* |  |  |  |  |  |  |  |  |  |
+  | Basis: *x* or *z* | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ |
   | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-  | Bit value: 0 or 1 |  |  |  |  |  |  |  |  |  |
+  | Bit value: 0 or 1 | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ | \_\_\_\_ |
 
 [^1]: [https://www.st-andrews.ac.uk/physics/quvis/simulations_html5/sims/entanglement/entanglement.html](https://www.st-andrews.ac.uk/physics/quvis/simulations_html5/sims/entanglement/entanglement.html).
 
@@ -549,12 +540,10 @@ Before parting ways, you and Alice agree on a key. Using a coin with heads = 0 a
 
 [^4]: [http://qttt.rohanp.xyz/](http://qttt.rohanp.xyz/).
 
-[^5]: [https://quantum-computing.ibm.com](https://quantum-computing.ibm.com).
+[^5]: [IBM Quantum Composer documentation](https://quantum.cloud.ibm.com/docs/en/guides/composer).
 
-[^6]: [https://qiskit.org/](https://qiskit.org/).
-
-[^7]: [https://qiskit.org/events/summer-school/](https://qiskit.org/events/summer-school/).
+[^6]: [IBM Quantum Learning](https://quantum.cloud.ibm.com/learning).
 
 [^8]: [https://www.st-andrews.ac.uk/physics/quvis/simulations_html5/sims/superposition/superposition-mixed-states.html](https://www.st-andrews.ac.uk/physics/quvis/simulations_html5/sims/superposition/superposition-mixed-states.html).
 
-[^9]: [https://phet.colorado.edu/sims/stern-gerlach/stern-gerlach_en.html](https://phet.colorado.edu/sims/stern-gerlach/stern-gerlach_en.html).
+[^9]: [PhET Stern–Gerlach simulation](https://phet.colorado.edu/en/simulations/stern-gerlach).

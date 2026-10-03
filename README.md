@@ -9,8 +9,9 @@ the repository root.
 The original book was published by Springer in 2021 and is available as an
 open-access work at
 [doi:10.1007/978-3-030-61601-4](https://doi.org/10.1007/978-3-030-61601-4).
-This rendition preserves the book's prose, equations, figures, worksheets,
-and chapter structure in an accessible web-native format.
+This web-native adaptation retains the original equations, figures, worksheets,
+and chapter structure while documenting editorial corrections in
+[`reviews/editorial-review.md`](reviews/editorial-review.md).
 
 ## Read and edit the MyST edition
 
@@ -29,10 +30,15 @@ npm run start          # preview
 npm run verify         # structural and conversion checks
 npm run build          # static site in _build/html/
 npm run check          # verify and build
+npm run build:pdf      # edited print edition in exports/
 ```
 
 CI runs on pull requests (`.github/workflows/ci.yml`); pushes to `main`
 deploy via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+
+The PDF build uses a local template and requires XeLaTeX, latexmk, and
+`pdfinfo` and `pdftotext` from Poppler. It prints the edited MyST edition, including its
+attribution page. The web build does not need the print toolchain.
 
 ## Live site
 

@@ -12,12 +12,11 @@ Classically, an electron’s spin can be visualized as a rotation about its own 
 (sec-4-1)=
 ## 4.1 Stern–Gerlach Apparatus
 
-The **Stern–Gerlach apparatus** (SGA) showed that the electron spin is quantized to only two values. This video[^2] explains the experimental apparatus used to measure the electron’s spin. The key point here is that the vertically oriented apparatus (called the *z*-direction by convention) only measures the spin as either up or down, not randomly oriented at any angle. Since the spin of an electron has two measurable states, it can represent a qubit with $\lvert 0 \rangle$ as spin up and $\lvert 1 \rangle$ as spin down (Fig. [](#fig-4-1)).
+The original **Stern–Gerlach experiment** sent silver atoms through an inhomogeneous magnetic field and observed two distinct deflections. The apparatus provides a model for measuring a spin-½ particle: along any chosen axis, an electron’s spin measurement has two possible outcomes. This video[^2] explains the experimental apparatus used to measure the electron’s spin. The key point here is that the vertically oriented apparatus (called the *z*-direction by convention) only measures the spin as either up or down, not randomly oriented at any angle. Since the spin of an electron has two measurable states, it can represent a qubit with $\lvert 0 \rangle$ as spin up and $\lvert 1 \rangle$ as spin down (Fig. [](#fig-4-1)).
 
 ```{figure} ../images/ch-04/490703_1_En_4_Fig1_HTML.png
 :label: fig-4-1
-
-:alt: An electron can spin either up or down and produce a magnetic field
+:alt: Cartoon analogy shows an electron with magnetic moment up or down, like opposite bar-magnet orientations; a tilted classical-spin picture is crossed out
 
 
 An electron can spin either up or down and produce a magnetic field.
@@ -30,8 +29,7 @@ Are the results what you would expect? The “up” and “down” directions ar
 
 ```{figure} ../images/ch-04/490703_1_En_4_Fig2_HTML.png
 :label: fig-4-2
-
-:alt: A cartoon picture of the Stern–Gerlach Apparatus. Electron spin produces a magnetic field either in the up or down direction
+:alt: Stern–Gerlach device with separate upper red and lower blue output ports for the two spin outcomes
 
 
 A cartoon picture of the Stern–Gerlach Apparatus. Electron spin produces a magnetic field either in the up or down direction.
@@ -42,17 +40,16 @@ A cartoon picture of the Stern–Gerlach Apparatus. Electron spin produces a mag
 
 ```{figure} ../images/ch-04/490703_1_En_4_Fig3_HTML.png
 :label: fig-4-3
-
-:alt: Choices for Question 2
+:alt: Four candidate detector patterns: a spot on the left, a spot on the right, one central spot, or two spots separated vertically
 
 
 Choices for Question 2.
 ```
 
 
-Classically, vertically oriented bar magnets in a horizontal magnetic field would land at the center of the screen. However, recall that the spin can only be measured as left or right and cannot possibly land in the center. The way quantum mechanics solves this problem is to have the electron land either on the left or the right with 50% probability. Sound familiar? Sending a spin up electron through a horizontal SGA puts the electron in a superposition state of left and right.
+Classically, vertically oriented bar magnets in a horizontal magnetic field would land at the center of the screen. However, recall that the spin can only be measured as left or right and cannot possibly land in the center. The way quantum mechanics solves this problem is to have the electron land either on the left or the right with 50% probability. Sound familiar? Before entering the horizontal SGA, a spin-up electron is already a superposition of left and right when expressed in the horizontal measurement basis. The apparatus yields one of those two outcomes.
 
-The Stern–Gerlach experiment shows that qubits in superposition are an accurate description of how nature truly operates. Therefore, one promising application of quantum computers is simulating systems that occur in nature such as electronic properties of a molecule for use in drug design.[^4]
+The Stern–Gerlach results illustrate why the measurement basis matters when describing a spin qubit. More broadly, simulating quantum systems, including properties of molecules, is one proposed application of quantum computers.[^4]
 
 (sec-4-2)=
 ## 4.2 Measurement Basis
@@ -71,7 +68,7 @@ Spin in the vertical direction can be represented as a superposition of spins in
 \lvert \downarrow \rangle = \frac{1}{\sqrt{2}}\lvert \leftarrow \rangle - \frac{1}{\sqrt{2}}\lvert \rightarrow \rangle.
 ```
 
-In more traditional qubit notation, spin in the + *z* and − *z* axis is written as $\lvert 0 \rangle$ and $\lvert 1\rangle$, while spin in the + *x* and − *x* axis is $\lvert + \rangle$ and $\lvert - \rangle$:
+In more traditional qubit notation, spin along the + *z* and − *z* directions is written as $\lvert 0 \rangle$ and $\lvert 1\rangle$, while spin along the + *x* and − *x* directions is $\lvert + \rangle$ and $\lvert - \rangle$:
 
 ```{math}
 :label: eq-4-3
@@ -85,12 +82,11 @@ In more traditional qubit notation, spin in the + *z* and − *z* axis is writte
 \lvert 1 \rangle = \frac{1}{\sqrt{2}}\lvert + \rangle - \frac{1}{\sqrt{2}}\lvert - \rangle.
 ```
 
-This is non-classical because you cannot add or subtract horizontal magnetic field vectors to get a vertical magnetic field vector. One analogy might be to think about a person looking at a coin vertically to determine its state. If they see heads or tails, someone looking from the side would see a superposition. If they are forced to make a choice via measurement, they would say heads or tails with 50% probability (Fig. [](#fig-4-4)).
+The equations express the same state in two different measurement bases. Figure [](#fig-4-4) uses a coin as a mnemonic for changing viewpoint, but an ordinary coin does not acquire quantum coherence merely because it is viewed from another direction. A horizontal spin measurement on a vertically prepared electron gives two possible outcomes with equal probability.
 
 ```{figure} ../images/ch-04/490703_1_En_4_Fig4_HTML.png
 :label: fig-4-4
-
-:alt: Analogy for how a definite vertical spin is seen as a superposition in the horizontal direction
+:alt: Coin-viewpoint analogy labels one view heads for sure and another a heads-tails superposition; this is only a mnemonic for changing measurement basis
 
 
 Analogy for how a definite vertical spin is seen as a superposition in the horizontal direction.
@@ -127,15 +123,14 @@ These equations show that a horizontal spin is a superposition of spin up and sp
 
 We reached the conclusion that spins in one direction can be written as a superposition of spins in another direction. Within the quantum computing field, the “*z*-basis” is composed of $\lvert 0 \rangle$ and $\lvert 1 \rangle$, while $\lvert + \rangle$ and $\lvert - \rangle$ compose the “*x*-basis.” A basis is analogous to a coordinate system for quantum states. Any state can be written in terms of a different choice of basis, similarly to how any vector can be broken down into components along a different choice of axes.
 
-In Fig. [](#fig-4-5), a box on a ramp is subject to a force. The vector decomposition of $\vec {F}$ is shown for three different coordinate systems. All three coordinate systems are valid for describing the force, but only the first two are convenient to use in actual calculations. By choosing *x*–*y* to be perpendicular, you have made the components mutually exclusive: if a vector is horizontal, you know it’s definitely not vertical. The *x*- and *y*- directions can be treated as two independent problems. The mathematical term for expressing that the axes are independent is “orthogonal”. In quantum mechanics, there are an infinite number of possible choices for a basis. However, the basis should have two properties:[^5]
+In Fig. [](#fig-4-5), a box on a ramp is subject to a force. The vector decomposition of $\vec {F}$ is shown for three different coordinate systems. All three coordinate systems are valid for describing the force, but only the first two are convenient to use in actual calculations. By choosing *x*–*y* to be perpendicular, you have made the components mutually exclusive: if a vector is horizontal, you know it’s definitely not vertical. The *x*- and *y*- directions can be treated as two independent problems. The mathematical term for expressing that the axes are independent is “orthogonal”. In quantum mechanics, there are an infinite number of possible choices for a basis. For the measurement bases used here, we choose states with two properties:[^5]
 
-1. The basis must describe all possible quantum states for the system.
-2. The basis must be orthogonal.
+1. The states span the possible spin states of the system.
+2. The states are orthogonal, so the two outcomes are distinguishable in that measurement.
 
 ```{figure} ../images/ch-04/490703_1_En_4_Fig5_HTML.png
 :label: fig-4-5
-
-:alt: Rewriting quantum states in terms of a different basis is similar to decomposing a classical vector into a different choice of coordinate system
+:alt: A force on a box on a ramp is resolved into components in three coordinate systems, including axes along and perpendicular to the ramp
 
 
 Rewriting quantum states in terms of a different basis is similar to decomposing a classical vector into a different choice of coordinate system.
@@ -160,14 +155,13 @@ The same argument can be made for the *x*-basis or any other angle of the SGA (F
 (sec-4-3)=
 ## 4.3 Geometric Representation of a Basis
 
-In this geometric representation of the *z*-basis and *x*-basis, the orthogonal states are drawn perpendicular to one another. If the electron is in a particular state $\lvert 0 \rangle$ in the *z*-basis, the state vector can be decomposed into $1/\sqrt {2}\lvert + \rangle + 1/\sqrt {2}\lvert - \rangle$ in the *x*-basis. Physically turning the SGA from vertical to horizontal corresponds to changing the measurement from the *z* to the *x*-basis. Since $\lvert 0 \rangle = 1/\sqrt {2}\lvert + \rangle + 1/\sqrt {2}\lvert - \rangle$, the spin up particle became a 50/50 superposition when the measurement device became horizontal.
+In this geometric representation of the *z*-basis and *x*-basis, the orthogonal states are drawn perpendicular to one another. If the electron is in a particular state $\lvert 0 \rangle$ in the *z*-basis, the state vector can be decomposed into $1/\sqrt {2}\lvert + \rangle + 1/\sqrt {2}\lvert - \rangle$ in the *x*-basis. Physically turning the SGA from vertical to horizontal corresponds to changing the measurement from the *z* to the *x*-basis. Since $\lvert 0 \rangle = 1/\sqrt {2}\lvert + \rangle + 1/\sqrt {2}\lvert - \rangle$, the same spin-up state has 50/50 outcome probabilities when measured with the horizontal apparatus. Rotating the apparatus changes the measurement basis, not the electron’s state before measurement.
 
 **Question 3** Use Fig. [](#fig-4-6) and trigonometry to show that $\lvert 1 \rangle = 1/\sqrt {2}\lvert + \rangle - 1/\sqrt {2}\lvert -\rangle$.
 
 ```{figure} ../images/ch-04/490703_1_En_4_Fig6_HTML.png
 :label: fig-4-6
-
-:alt: Geometric representation of the *z*-basis and *x*-basis. The state of a spin up electron is shown
+:alt: Red electron-state arrow points along the vertical zero-state axis; dashed plus and minus axes lie diagonally at 45 degrees
 
 
 Geometric representation of the *z*-basis and *x*-basis. The state of a spin up electron is shown.
@@ -179,7 +173,7 @@ Often, there is hidden information about the state that cannot be measured unles
 (sec-4-4)=
 ## 4.4 Effect of Measurement
 
-You learned that measuring a qubit collapses its superposition state into one of two possibilities. A spinning coin is in a superposition state, but once it lands, it becomes either heads or tails. The photon is in a superposition state after passing through a beam splitter, but once it reaches the detectors, we know for sure whether it was reflected or transmitted. To appreciate the truly strange nature of quantum measurement, let’s see what happens when electrons are sent through multiple Stern–Gerlach devices in a row.
+You learned that measuring a qubit collapses its superposition state into one of two possibilities. A coin toss can illustrate uncertainty about the result, but the coin is not a quantum superposition. A qubit can be in a superposition before measurement and yields one definite result when measured. The photon is in a superposition state after passing through a beam splitter, but once it reaches the detectors, we know for sure whether it was reflected or transmitted. To appreciate the truly strange nature of quantum measurement, let’s see what happens when electrons are sent through multiple Stern–Gerlach devices in a row.
 
 **Question 4** Open the PhET Stern–Gerlach simulator[^6] and send electrons with randomly oriented spins through a vertical SGA as in Fig. [](#fig-4-7). What is the spin of the electrons that pass through the hole?
 
@@ -189,8 +183,7 @@ You learned that measuring a qubit collapses its superposition state into one of
 
 ```{figure} ../images/ch-04/490703_1_En_4_Fig7_HTML.png
 :label: fig-4-7
-
-:alt: The *z*-axis SGA lets through spin up electrons but blocks spin down electrons
+:alt: Vertical Stern–Gerlach device has an open upper spin port and a blocked lower spin port
 
 
 The *z*-axis SGA lets through spin up electrons but blocks spin down electrons.
@@ -205,8 +198,7 @@ The *z*-axis SGA lets through spin up electrons but blocks spin down electrons.
 
 ```{figure} ../images/ch-04/490703_1_En_4_Fig8_HTML.png
 :label: fig-4-8
-
-:alt: The *z* and *x*-axis SGA
+:alt: A vertical spin analyzer selecting the upper output is followed by a horizontal spin analyzer
 
 
 The *z* and *x*-axis SGA.
@@ -229,7 +221,6 @@ Given that only spin up electrons passed through the first SGA, one would expect
 
 ```{figure} ../images/ch-04/490703_1_En_4_Fig9_HTML.png
 :label: fig-4-9
-
 :alt: The first SGA selects for + *z* spin and the second SGA selects for − *x*. The third SGA shows that by measuring the − *x* spin in the *z*-basis, the electron is in a superposition of + *z* and − *z*
 
 
@@ -239,14 +230,14 @@ The first SGA selects for + *z* spin and the second SGA selects for − *x*. The
 
 By measuring the electron, we fundamentally changed its state. Measuring the *x*-spin of the qubit puts it into a superposition of up and down, even when it started as up to begin with. When you measure the length of an object with a ruler, you don’t expect the object’s length to change after you measure it!
 
-Quantum measurement collapse is used in many quantum applications such as cryptography, where one could detect if a message has been intercepted. This will be discussed in further detail in Chap. [](#ch-5). Moreover, this property of quantum states implies that a qubit in an unknown state cannot be copied. This concept is known as the no-cloning theorem and has very important consequences. For example, classical computers can make a copy of lines of text and the original version of the text stays the same—there are now two identical copies of the same text. But, if you try to copy an unknown qubit you first have to measure it, which fundamentally alters it by collapsing its superposition state into a basis state. Therefore, since quantum computers cannot copy text as easily as classical computers can, they are unlikely to replace your laptop. However, for certain applications, the information in superposition states allows information processing beyond what is possible in a classical computer. This will be explored more in Chap. [](#ch-9).
+Quantum measurement collapse is used in many quantum applications such as cryptography, where one could detect if a message has been intercepted. This will be discussed in further detail in Chap. [](#ch-5). An arbitrary unknown qubit state also cannot be copied perfectly while retaining the original. This is the **no-cloning theorem**: no single quantum operation can duplicate every possible input state. Measurement cannot evade the limit, because it reveals only one outcome and generally changes the state. Classical information such as text can still be copied; the theorem concerns unknown quantum states, not ordinary files stored on a quantum computer. However, for certain applications, the information in superposition states allows information processing beyond what is possible in a classical computer. This will be explored more in Chap. [](#ch-9).
 
 (sec-4-5)=
 ## 4.5 Big Ideas
 
-1. An electron has an intrinsic property called spin, which is quantized into two values called spin-up and spin-down.
+1. An electron has an intrinsic property called spin. A measurement of its spin along a chosen axis has two possible outcomes, often called spin-up and spin-down.
 2. The measurement basis is important when interpreting results from experiments on quantum states. Two common bases are the *z*-basis (|0〉 and |1〉) and the *x*-basis (|+〉 and |−〉).
-3. The Stern–Gerlach apparatus (SGA) can be used to put the electron into a superposition state. The electron can be used as a qubit, and the SGA as a way to operate on this qubit. Together, they are a simple model of a quantum computer.
+3. Stern–Gerlach apparatuses can prepare and measure electron-spin states in different bases. The electron can be used as a qubit, and the SGA as a way to operate on this qubit. Together, they are a simple model of a quantum computer.
 
 (sec-4-6)=
 ## 4.6 Activities
@@ -262,8 +253,7 @@ Quantum measurement collapse is used in many quantum applications such as crypto
 
    ```{figure} ../images/ch-04/490703_1_En_4_Fig10_HTML.png
    :label: fig-4-10
-
-   :alt: Stern Gerlach apparatus
+   :alt: Four candidate screen patterns: two spots separated horizontally, a horizontal band, one central spot, or two spots separated vertically
 
 
    Stern Gerlach apparatus.
@@ -276,15 +266,14 @@ Quantum measurement collapse is used in many quantum applications such as crypto
 
    ```{figure} ../images/ch-04/490703_1_En_4_Fig11_HTML.png
    :label: fig-4-11
-
-   :alt: Superposition state of the electron
+   :alt: Red electron-state arrow lies between the vertical zero-state axis and diagonal plus-state axis, at an angle of pi over six from vertical
 
 
    Superposition state of the electron.
    ```
 
 
-   - (a) What is the state of the electron in the *z*-basis? i.e. find *α* and *β* in $\lvert \text{electron} \rangle = \alpha \lvert 0 \rangle + \beta \lvert 1 \rangle$
+   - (a) What is the state of the electron in the *z*-basis? That is, find *α* and *β* in $\lvert \text{electron} \rangle = \alpha \lvert 0 \rangle + \beta \lvert 1 \rangle$
    - (b) What is the probability of measuring spin up?
    - (c) What is the state of the electron in the *x*-basis? i.e., find *α* and *β* in $\lvert \text{electron} \rangle = \alpha \lvert + \rangle + \beta \lvert - \rangle$.
    - (d) What is the probability of measuring the spin in the $\lvert - \rangle$ direction?
@@ -306,8 +295,7 @@ Quantum measurement collapse is used in many quantum applications such as crypto
 
    ```{figure} ../images/ch-04/490703_1_En_4_Fig12_HTML.png
    :label: fig-4-12
-
-   :alt: SGA setup for Problem 5
+   :alt: Random-spin beam passes through a vertical spin analyzer with the minus-z output blocked, then a second vertical analyzer with both outputs open
 
 
    SGA setup for Problem 5.
@@ -320,8 +308,7 @@ Quantum measurement collapse is used in many quantum applications such as crypto
 
       ```{figure} ../images/ch-04/490703_1_En_4_Fig13_HTML.png
       :label: fig-4-13
-
-      :alt: SGA setup for Problem 6a
+      :alt: Random-spin beam passes through a vertical analyzer selecting plus-z, then an inverted vertical analyzer whose plus-z output is blocked
 
 
       SGA setup for Problem 6a.
@@ -332,8 +319,7 @@ Quantum measurement collapse is used in many quantum applications such as crypto
 
       ```{figure} ../images/ch-04/490703_1_En_4_Fig14_HTML.png
       :label: fig-4-14
-
-      :alt: SGA setup for Problem 6b
+      :alt: Random-spin beam passes through a vertical analyzer selecting plus-z, then an inverted vertical analyzer with both outputs open
 
 
       SGA setup for Problem 6b.
@@ -344,8 +330,7 @@ Quantum measurement collapse is used in many quantum applications such as crypto
 
    ```{figure} ../images/ch-04/490703_1_En_4_Fig15_HTML.png
    :label: fig-4-15
-
-   :alt: SGA setup for Problem 7
+   :alt: Random-spin beam passes through a horizontal analyzer selecting plus-x, then a vertical analyzer with both outputs open
 
 
    SGA setup for Problem 7.
@@ -356,8 +341,7 @@ Quantum measurement collapse is used in many quantum applications such as crypto
 
    ```{figure} ../images/ch-04/490703_1_En_4_Fig16_HTML.png
    :label: fig-4-16
-
-   :alt: SGA setup for Problem 8
+   :alt: Random-spin beam passes through a horizontal analyzer selecting plus-x, then another horizontal analyzer selecting minus-x, then a vertical analyzer
 
 
    SGA setup for Problem 8.
@@ -368,8 +352,7 @@ Quantum measurement collapse is used in many quantum applications such as crypto
 
    ```{figure} ../images/ch-04/490703_1_En_4_Fig17_HTML.png
    :label: fig-4-17
-
-   :alt: SGA setup for Problem 9
+   :alt: Random-spin beam passes through a vertical analyzer selecting minus-z, then a horizontal analyzer blocking the plus-x output, then a vertical analyzer
 
 
    SGA setup for Problem 9.
@@ -380,8 +363,7 @@ Quantum measurement collapse is used in many quantum applications such as crypto
 
     ```{figure} ../images/ch-04/490703_1_En_4_Fig18_HTML.png
     :label: fig-4-18
-
-    :alt: SGA setup for Problem 10
+    :alt: Random-spin beam passes through vertical, horizontal, inverted vertical, and vertical analyzers; selected outputs are blocked between stages
 
 
     SGA setup for Problem 10.
