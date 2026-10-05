@@ -1,9 +1,8 @@
 # MyST editorial review
 
 Started 2026-09-29. This is the progress record for the student-facing pages in
-`myst.yml`. The earlier [`TYPO-REPORT.md`](../TYPO-REPORT.md) is a historical
-finding list; recheck each suggestion against the current text before applying
-it. Its chapter 7–10 findings were rechecked after this pass; most were already
+`myst.yml`. An earlier typo audit was rechecked against the current text.
+Its chapter 7–10 findings were rechecked after this pass; most were already
 resolved in the current text, and the remaining heading and prose issues were
 corrected. Changes here adapt the 2021 CC BY 4.0 source edition, which is credited in
 [`SOURCES.md`](../SOURCES.md).

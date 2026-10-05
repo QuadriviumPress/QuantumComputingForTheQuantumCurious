@@ -256,7 +256,7 @@ Quantum measurement collapse is used in many quantum applications such as crypto
    :alt: Four candidate screen patterns: two spots separated horizontally, a horizontal band, one central spot, or two spots separated vertically
 
 
-   Stern Gerlach apparatus.
+   Stern–Gerlach apparatus.
    ```
 
 

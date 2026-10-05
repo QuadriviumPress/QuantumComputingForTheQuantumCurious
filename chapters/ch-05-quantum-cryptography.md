@@ -36,9 +36,9 @@ Together, the one-time pad and **quantum key distribution** (QKD) could be a use
 
 ### 5.3.1 Before Sending the Message
 
-The sender (Alice) and receiver (Bob) publicly agree to the relationship between spins and bit value shown in [](#tbl-5-1).
+The sender (Alice) and receiver (Bob) publicly agree to the relationship between spin states and bit values shown in [](#tbl-5-1).
 
-:::{table} Table for the relationship between spin and bit values for quantum cryptography
+:::{table} Table for the relationship between spin states and bit values for quantum cryptography
 :label: tbl-5-1
 :enumerator: 5.1
 
